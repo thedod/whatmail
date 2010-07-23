@@ -1,0 +1,26 @@
+WhatMail by @TheRealDod
+
+This is a simple cgi contact form that has recaptcha and can handle utf-8.
+
+I always need one, and I always end up writing it again. Never again [I hope].
+
+Uses Recaptcha "client library":http://pypi.python.org/pypi/recaptcha-client and Denevers "mysender":http://github.com/denever/mysender/ SMTP wrapper (both included).
+
+There's no email address validation and no assumption that such an address is entered at all.
+It's not added as a Reply-to header so that I won't reveal my email address by accident.
+My friends can leave a name, strangers can leave a phone number, I'm easy :)
+
+To install:
+
+* Put all files (including .htaccess) in a web-accessible folder.
+
+* Check your .htaccess settings by accessing testcgi.py from web: If you see
+  python source, do *not* continue to the next step (creating whatconf.py). This file
+  will contain passwords and keys, and you have to make sure it can't be accessible
+  from web. If .htaccess doesn't do the trick, show it to your sysadmin and ask to config
+  your folder at the apache according to what's written there.
+
+* copy whatconf_example.py to whatconf.py and edit it. See comments inside the file.
+
+* That's it. You can now access the folder via web (e.g. /whatmail/) and get a contact form.
+  Send yourself a message to congratulate yourself.

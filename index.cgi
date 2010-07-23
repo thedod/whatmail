@@ -1,0 +1,151 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from whatconf import *
+
+MESSAGE_TEMPLATE="""%(iptext)s%(gmtime)s
+Message from %(author)s
+
+Subject: %(subject)s
+
+%(message)s"""
+
+FORM_PAGE_TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Write to the Dod</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+</head>
+<body>
+  <h2>Write to The Dod</h2>
+  <p>Stuff in <b>bold</b> is mandatory.</p>
+  <form name="feedback_form" id="feedback_form" method="post"
+  action="%(scriptname)s">
+    <table>
+      <tr>
+        <td valign="bottom">
+          <span class="color:#7f0000">%(errorhtml)s</span>
+          <p><b>Name and/or email:</b> <input size="30" name=
+          "author" id="author" value="%(author)s"></p>
+          <p><b>subject:</b> <input size="45" name="subject" id=
+          "subject" value="%(subject)s"></p>
+        </td>
+        <td valign="top" align="center">
+          <b>To prove you're human and not a spam robot,<br>
+          you need to pass the captcha test.</b>
+          %(captcha)s
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <p>message:<br>
+          <textarea cols="100" rows="8" name="message" id=
+          "message">%(message)s</textarea></p>
+          <p><input type="submit" value="Send"></p>
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>"""
+
+RESPONSE_PAGE_TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>%(title)s</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+</head>
+<body>
+  <h2>%(title)s</h2>
+  %(response)s
+</body>
+</html>"""
+
+def sendit(host = SMTP_HOST, port=SMTP_PORT,
+           keyfile = SMTP_KEYFILE, certfile = SMTP_CERTFILE,
+           username = SMTP_USERNAME, password = SMTP_PASSWORD,
+           author = "A guy who knows a guy",
+           ip = None,
+           subject = "Testing multilingual subject line כלומר זה רב שפתי בדבר הזה",
+           message = "This is in English,\r\nוזה בעברית"):
+    """Sends email."""
+    from email.header import Header
+    from email.mime.text import MIMEText
+    from mysender import send
+    from time import asctime,gmtime
+    body=MESSAGE_TEMPLATE % {
+        'author':author,
+        'iptext':ip and ('IP number: %s, ' % ip) or '',
+        'gmtime':asctime(gmtime()),
+        'subject':subject,
+        'message':message,
+    }
+    msg=MIMEText(body,'plain','utf-8')
+    msg.add_header('from',SMTP_FROM)
+    msg.add_header('to',SMTP_TO)
+    msg.add_header('subject',Header(SUBJECT_PREFIX+subject,'utf-8').encode())
+    send(msg, host, port, keyfile, certfile, username, password)
+
+def webit():
+    import os,cgi
+    from exceptions import Exception
+    from recaptcha.client import captcha
+    try:
+        scriptname=os.environ['SCRIPT_NAME']
+    except: 
+        raise Exception,'Program should run as a cgi'
+    if DEBUG_TO_WEB:
+        import cgitb; cgitb.enable()
+    print 'Content-type: text/html; charset=utf-8\n\n'
+    if os.environ['REQUEST_METHOD']=='GET':
+        print FORM_PAGE_TEMPLATE % {
+            'scriptname':scriptname,
+            'errorhtml':'',
+            'author':'',
+            'subject':'',
+            'message':'',
+            'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY),
+      }
+    else: # POST
+        form = cgi.FieldStorage()
+        errors=[]
+        captcha_error=''
+        if not form.getvalue('author',''):
+            errors.append("Empty name/email. I need to know how to get back to you.")
+        if not form.getvalue('subject',''):
+            errors.append("Empty subject line. Tell me what it's about.")
+        captcha_response = captcha.submit(
+            form.getvalue('recaptcha_challenge_field'),
+            form.getvalue('recaptcha_response_field'),
+            RECAPTCHA_PRIVATE_KEY,
+            os.environ['REMOTE_ADDR'])
+        if not captcha_response.is_valid:
+            errors.append("You've failed the captcha test. Convince me again that you're not a robot")
+            captcha_error=captcha_response.error_code
+        if errors:
+            errorhtml='Errors:<ul>%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))
+            print FORM_PAGE_TEMPLATE % {
+                'scriptname':scriptname,
+                'errorhtml':errorhtml,
+                'author':form.getvalue('author',''),
+                'subject':form.getvalue('subject',''),
+                'message':form.getvalue('message',''),
+                'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,error=captcha_error),
+            }
+        else:
+            try:
+                sendit(author=form.getvalue('author'), ip=os.environ['REMOTE_ADDR'],
+                    subject=form.getvalue('subject'), message=form.getvalue('message','(empty message)'))
+                title='Message sent'
+                response='Thank you, %s, for your message.' % form.getvalue('author')
+            except Exception,e:
+                title='Message sending failed'
+                response='<b>Error:</b> %s' % str(e)
+            print RESPONSE_PAGE_TEMPLATE % {'title':title,'response':response}
+
+
+if __name__=='__main__':
+    webit()
