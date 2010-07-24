@@ -47,6 +47,7 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional/
       </tr>
     </table>
   </form>
+  The source code is <a href="http://github.com/thedod/whatmail">here</a>.
 </body>
 </html>"""
 
@@ -123,7 +124,7 @@ def webit():
             RECAPTCHA_PRIVATE_KEY,
             os.environ['REMOTE_ADDR'])
         if not captcha_response.is_valid:
-            errors.append("You've failed the captcha test. Convince me again that you're not a robot")
+            errors.append("You've failed the captcha test. Convince me again that you're not a robot.")
             captcha_error=captcha_response.error_code
         if errors:
             errorhtml='Errors:<ul>%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))

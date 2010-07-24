@@ -1,4 +1,4 @@
-WhatMail by @TheRealDod
+WhatMail by "@TheRealDod":http://twitter.com/TheRealDod
 
 This is a simple cgi contact form that has recaptcha and can handle utf-8.
 
