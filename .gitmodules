@@ -1,0 +1,3 @@
+[submodule "bitly"]
+	path = bitly
+	url = git@github.com:thedod/whatmail.git

@@ -13,3 +13,6 @@ SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 RECAPTCHA_PUBLIC_KEY='****************'
 RECAPTCHA_PRIVATE_KEY='***************'
 
+# You get these two at http://bit.ly/a/your_api_key
+BITLY_USER='*******'
+BITLY_PASSWORD='*******'
