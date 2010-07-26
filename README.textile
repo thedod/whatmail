@@ -1,3 +1,22 @@
+h3. Ugc Url branch of whatmail
+Master branch is a simple mailform. The ugcurl branch is an adhoc form for apps like "SynPhonia":http://github.com/thedod/SynPhonia where there's user generated content (ugc), in this case - an audio mix, and each _ugc_ item can be can be accessed (or recreated in the case of SynPhonia) bt visiting the _url_ the user just came from (i.e. the _referer).
+
+In case of Synphonia, the whole mix is defined by the query part of the url (and it's guaranteed to be pretty long), so we also use a bit.ly url shortener to make the _url_ sent by mail managable.
+
+The Ugc Url does the following things:
+
+# Makes sure the referer url is acceptable (we don't want this to be used from dubious referers)
+
+# Shortens the url via the "bit.ly":http://bit.ly api
+
+# Shows some ways to share the url via various social networks (that's a bonus, since we've already shortened the url :) ).
+
+# Displays a whatmail form that submits the ugc item (e.g. the mix) for a contest etc.
+
+All this is very ad-hoc and very specific, but I can think of cases where such a cgi can be handy.
+
+h4. Original README of master branch
+
 WhatMail by "@TheRealDod":http://twitter.com/TheRealDod
 
 This is a simple cgi contact form that has recaptcha and can handle utf-8.
