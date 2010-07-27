@@ -15,7 +15,7 @@ RECAPTCHA_PRIVATE_KEY='***************'
 
 # You get these two at http://bit.ly/a/your_api_key
 BITLY_USERNAME='*******'
-BITLY_PASSWORD='*******'
+BITLY_API_KEY='*******'
 
 # To avoid cross-site scripting and honest mistakes
 # Only allow referrers to come from a specific site (or folder)
