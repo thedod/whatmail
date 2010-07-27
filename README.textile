@@ -1,6 +1,6 @@
 h3. Ugc Url branch of whatmail
 
-Master branch is a simple mailform. The ugcurl branch is an adhoc form for apps like "SynPhonia":http://github.com/thedod/SynPhonia where there's user generated content (ugc), in this case - an audio mix, and each _ugc_ item can be can be accessed (or recreated in the case of SynPhonia) bt visiting the _url_ the user just came from (i.e. the _referrer_).
+Master branch is a simple mailform. The ugcurl branch is an adhoc form for apps like "SynPhonia":http://github.com/thedod/SynPhonia where there's user generated content (ugc), in this case - an audio mix, and each _ugc_ item can be can be accessed (or recreated in the case of SynPhonia) by visiting the _url_ the user just came from (i.e. the _referrer_).
 
 In case of Synphonia, the whole mix is defined by the query part of the url (and it's guaranteed to be pretty long), so we also use a bit.ly url shortener to make the _url_ sent by mail managable.
 
