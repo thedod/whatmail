@@ -1,11 +1,12 @@
 h3. Ugc Url branch of whatmail
-Master branch is a simple mailform. The ugcurl branch is an adhoc form for apps like "SynPhonia":http://github.com/thedod/SynPhonia where there's user generated content (ugc), in this case - an audio mix, and each _ugc_ item can be can be accessed (or recreated in the case of SynPhonia) bt visiting the _url_ the user just came from (i.e. the _referer).
+
+Master branch is a simple mailform. The ugcurl branch is an adhoc form for apps like "SynPhonia":http://github.com/thedod/SynPhonia where there's user generated content (ugc), in this case - an audio mix, and each _ugc_ item can be can be accessed (or recreated in the case of SynPhonia) bt visiting the _url_ the user just came from (i.e. the _referrer_).
 
 In case of Synphonia, the whole mix is defined by the query part of the url (and it's guaranteed to be pretty long), so we also use a bit.ly url shortener to make the _url_ sent by mail managable.
 
-The Ugc Url does the following things:
+The Ugc Url cgi does the following things:
 
-# Makes sure the referer url is acceptable (we don't want this to be used from dubious referers)
+# Makes sure the referrer url is acceptable (we don't want this to be used from dubious referrers)
 
 # Shortens the url via the "bit.ly":http://bit.ly api
 
@@ -14,6 +15,10 @@ The Ugc Url does the following things:
 # Displays a whatmail form that submits the ugc item (e.g. the mix) for a contest etc.
 
 All this is very ad-hoc and very specific, but I can think of cases where such a cgi can be handy.
+
+h4. New dependency
+
+Added "python-bitly":http://code.google.com/p/python-bitly/, so now we depend on "simplejson":http://cheeseshop.python.org/pypi/simplejson
 
 h4. Original README of master branch
 
