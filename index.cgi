@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python2.6
 # -*- coding: utf-8 -*-
 from whatconf import *
 
@@ -9,13 +9,13 @@ Subject: %(subject)s
 
 %(message)s"""
 
-FORM_PAGE_TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Write to the Dod</title>
   <meta http-equiv="Content-Type" content=
   "text/html; charset=utf-8">
+  <link rel="stylesheet" href="stylee.css" type="text/css" />
 </head>
 <body>
   <h2>Write to The Dod</h2>
@@ -51,13 +51,12 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional/
 </body>
 </html>"""
 
-RESPONSE_PAGE_TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
+RESPONSE_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>%(title)s</title>
-  <meta http-equiv="Content-Type" content=
-  "text/html; charset=utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="stylee.css" type="text/css" />
 </head>
 <body>
   <h2>%(title)s</h2>
@@ -86,7 +85,8 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
     }
     msg=MIMEText(body,'plain','utf-8')
     msg.add_header('from',SMTP_FROM)
-    msg.add_header('to',SMTP_TO)
+    for addr in SMTP_TOS:
+        msg.add_header('to',addr)
     msg.add_header('subject',Header(SUBJECT_PREFIX+subject,'utf-8').encode())
     send(msg, host, port, keyfile, certfile, username, password)
 
@@ -101,6 +101,7 @@ def webit():
     if DEBUG_TO_WEB:
         import cgitb; cgitb.enable()
     print 'Content-type: text/html; charset=utf-8\n\n'
+    form = cgi.FieldStorage()
     if os.environ['REQUEST_METHOD']=='GET':
         print FORM_PAGE_TEMPLATE % {
             'scriptname':scriptname,
@@ -111,12 +112,13 @@ def webit():
             'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY),
       }
     else: # POST
-        form = cgi.FieldStorage()
         errors=[]
         captcha_error=''
-        if not form.getvalue('author',''):
+        author=form.getvalue('author','').strip()
+        if not author:
             errors.append("Empty name/email. I need to know how to get back to you.")
-        if not form.getvalue('subject',''):
+        subject=form.getvalue('subject','').strip()
+        if not subject:
             errors.append("Empty subject line. Tell me what it's about.")
         captcha_response = captcha.submit(
             form.getvalue('recaptcha_challenge_field'),
@@ -127,12 +129,12 @@ def webit():
             errors.append("You've failed the captcha test. Convince me again that you're not a robot.")
             captcha_error=captcha_response.error_code
         if errors:
-            errorhtml='Errors:<ul>%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))
+            errorhtml='<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))
             print FORM_PAGE_TEMPLATE % {
                 'scriptname':scriptname,
                 'errorhtml':errorhtml,
-                'author':form.getvalue('author',''),
-                'subject':form.getvalue('subject',''),
+                'author':author,
+                'subject':subject,
                 'message':form.getvalue('message',''),
                 'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,error=captcha_error),
             }
@@ -144,7 +146,7 @@ def webit():
                 response='Thank you, %s, for your message.' % form.getvalue('author')
             except Exception,e:
                 title='Message sending failed'
-                response='<b>Error:</b> %s' % str(e)
+                response='<em>Error:</em> %s' % str(e)
             print RESPONSE_PAGE_TEMPLATE % {'title':title,'response':response}
 
 
