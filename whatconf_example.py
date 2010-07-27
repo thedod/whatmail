@@ -19,4 +19,5 @@ BITLY_API_KEY='*******'
 
 # To avoid cross-site scripting and honest mistakes
 # Only allow referrers to come from a specific site (or folder)
+# Should end with a / (or you'll allow example.org.evil.com etc.)
 ALLOWED_REFERRER_PREFIX='http://example.org/projects/mine/'
