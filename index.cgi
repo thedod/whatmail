@@ -1,4 +1,4 @@
-#!/usr/local/bin/python2.6
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 from whatconf import *
 
@@ -26,7 +26,7 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
       %(captcha)s
     </div>
     <h3>Write to The Dod</h3>
-    <p>Stuff in <strong>bold</strong> is mandatory.</p>
+    <p>Stuff in <strong>bold</strong> is mandatory. International text כמו עברית is OK.</p>
       %(errorhtml)s
       <div class="field-wrapper">
           <div class="field-label"><strong>Name and/or email:</strong></div>
