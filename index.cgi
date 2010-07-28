@@ -18,34 +18,31 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
   <link rel="stylesheet" href="stylee.css" type="text/css" />
 </head>
 <body>
-  <h2>Write to The Dod</h2>
-  <p>Stuff in <b>bold</b> is mandatory.</p>
-  <form name="feedback_form" id="feedback_form" method="post"
-  action="%(scriptname)s">
-    <table>
-      <tr>
-        <td valign="bottom">
-          <span class="color:#7f0000">%(errorhtml)s</span>
-          <p><b>Name and/or email:</b> <input size="30" name=
-          "author" id="author" value="%(author)s"></p>
-          <p><b>subject:</b> <input size="45" name="subject" id=
-          "subject" value="%(subject)s"></p>
-        </td>
-        <td valign="top" align="center">
-          <b>To prove you're human and not a spam robot,<br>
-          you need to pass the captcha test.</b>
-          %(captcha)s
-        </td>
-      </tr>
-      <tr>
+  <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
+        action="%(scriptname)s">
+    <div class="captcha">
+      <strong>To prove you're human and not a spam robot,<br/>
+      you need to pass the captcha test.</strong>
+      %(captcha)s
+    </div>
+    <h3>Write to The Dod</h3>
+    <p>Stuff in <strong>bold</strong> is mandatory.</p>
+      %(errorhtml)s
+      <div class="field-wrapper">
+          <div class="field-label"><strong>Name and/or email:</strong></div>
+          <input class="field" size="30" name="author" id="author" value="%(author)s">
+      </div>
+      <div class="field-wrapper">
+          <div class="field-label"><strong>subject:</strong></div>
+          <input class="field" size="30" name="subject" id="subject" value="%(subject)s">
+      </div>
+      <div class="field-wrapper">
         <td colspan="2">
-          <p>message:<br>
-          <textarea cols="100" rows="8" name="message" id=
+          <p>Message:<br/>
+          <textarea class="field" cols="90" rows="8" name="message" id=
           "message">%(message)s</textarea></p>
           <p><input type="submit" value="Send"></p>
-        </td>
-      </tr>
-    </table>
+      </div>
   </form>
   The source code is <a href="http://github.com/thedod/whatmail">here</a>.
 </body>
@@ -146,7 +143,7 @@ def webit():
                 response='Thank you, %s, for your message.' % form.getvalue('author')
             except Exception,e:
                 title='Message sending failed'
-                response='<em>Error:</em> %s' % str(e)
+                response='<strong>Error:</strong> %s' % str(e)
             print RESPONSE_PAGE_TEMPLATE % {'title':title,'response':response}
 
 

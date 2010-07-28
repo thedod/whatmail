@@ -1,6 +1,6 @@
 DEBUG_TO_WEB=False # set to True when debugging
 SMTP_FROM='myself@gmail.com' # An email address that you're allowed to send from
-SMTP_TOS=['me@home.org','gan@work.com'] # list of recepients
+SMTP_TOS=['me@home.org','gang@work.com'] # list of recepients
 SMTP_HOST='smtp.gmail.com' # This is for gmail, depends on your mail provider
 SMTP_PORT=587 # usually 587
 SMTP_KEYFILE=None # If you know what it is, you know what to put there

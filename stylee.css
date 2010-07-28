@@ -1,6 +1,8 @@
-body {background-color: #000000; color: #ffffff}
-a {text-decoration:none; color:#ff4000}
+a {text-decoration:none}
 a:hover {text-decoration:underline}
-input {font-family: monospace}
-.share-icon {border:none; margin: 0pt; vertical-align: middle}
-.error-list {color:#ff0000; margin:4px}
+.feedback-form {width:750px}
+.field {border: solid gray 1px}
+.field-wrapper {clear:left}
+.field-label {float:left; width:150px}
+.captcha {float:right}
+.error-list {color:#ff0000}
