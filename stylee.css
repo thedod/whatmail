@@ -3,6 +3,6 @@ a:hover {text-decoration:underline}
 .feedback-form {width:750px}
 .field {border: solid gray 1px}
 .field-wrapper {clear:left}
-.field-label {float:left; width:150px}
+.field-label {float:left; margin-right:4px}
 .captcha {float:right}
 .error-list {color:#ff0000}

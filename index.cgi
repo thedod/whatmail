@@ -21,7 +21,7 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
   <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
         action="%(scriptname)s">
     <div class="captcha">
-      <strong>To prove you're human and not a spam robot,<br/>
+      <strong>To prove you're not a spam robot,<br/>
       you need to pass the captcha test.</strong>
       %(captcha)s
     </div>
@@ -30,7 +30,7 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
       %(errorhtml)s
       <div class="field-wrapper">
           <div class="field-label"><strong>Name and/or email:</strong></div>
-          <input class="field" size="30" name="author" id="author" value="%(author)s">
+          <input class="field" size="20" name="author" id="author" value="%(author)s">
       </div>
       <div class="field-wrapper">
           <div class="field-label"><strong>subject:</strong></div>
