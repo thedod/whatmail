@@ -62,7 +62,7 @@ RESPONSE_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//E
 </html>"""
 
 def is_ssl(env):
-    return env.get('HTTPS').lower()=='on' or env.get('HTTP_HTTPS').lower()=='on'
+    return env.get('HTTPS','').lower()=='on' or env.get('HTTP_HTTPS','').lower()=='on'
 
 def sendit(host = SMTP_HOST, port=SMTP_PORT,
            keyfile = SMTP_KEYFILE, certfile = SMTP_CERTFILE,
@@ -125,7 +125,7 @@ def webit():
             'message':'',
             'maybegpgtext':
                 GPG_ENABLED and ' (do <strong>not</strong> write secrets or passwords anywhere else)' or '',
-            'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY),
+            'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=is_ssl(os.environ)),
       }
     else: # POST
         errors=[]
