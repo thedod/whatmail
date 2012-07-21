@@ -22,6 +22,6 @@ GPG_ENCRYPT_TO=['0x......'] # your key(s) here
 # gpg -a --export 'me@example.com' | gpg --homedir '/path/to/.gnupg' --import
 # If you're getting 'enf of file' errors, check whether the user running the
 # Make sure that the user running the web server (e.g. www-data) has sufficient
-# permissions at GPG_HOMEDIR (if you get a bogus "end of file" error, it's either
-# permissions, or you forgot to import an pubkey).
+# permissions at GPG_HOMEDIR (if you get "Error: (7, 16383, u'End of file')" it's
+# either permissions, or you forgot to import a GPG_ENCRYPT_TO pubkey).
 GPG_HOMEDIR='/path/to/.gnupg'

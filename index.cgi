@@ -18,6 +18,7 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
   <link rel="stylesheet" href="stylee.css" type="text/css" />
 </head>
 <body>
+<p>%(env)s</p>
   <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
         action="%(scriptname)s">
     <div class="captcha">
@@ -116,6 +117,7 @@ def webit():
             'author':'',
             'subject':'',
             'message':'',
+            'env':`os.environ`,
             'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY),
       }
     else: # POST
