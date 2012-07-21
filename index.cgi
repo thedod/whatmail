@@ -18,7 +18,6 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
   <link rel="stylesheet" href="stylee.css" type="text/css" />
 </head>
 <body>
-<p>%(env)s</p>
   <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
         action="%(scriptname)s">
     <div class="captcha">
@@ -61,6 +60,9 @@ RESPONSE_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//E
   %(response)s
 </body>
 </html>"""
+
+def is_ssl(env):
+    return env.get('HTTPS').lower()=='on' or env.get('HTTP_HTTPS').lower()=='on'
 
 def sendit(host = SMTP_HOST, port=SMTP_PORT,
            keyfile = SMTP_KEYFILE, certfile = SMTP_CERTFILE,
@@ -108,7 +110,10 @@ def webit():
         raise Exception,'Program should run as a cgi'
     if DEBUG_TO_WEB:
         import cgitb; cgitb.enable()
-    print 'Content-type: text/html; charset=utf-8\n\n'
+    if REDIRECT_TO_SSL and not is_ssl(os.environ):
+        print 'Location: %s\n' % REDIRECT_TO_SSL
+        return
+    print 'Content-type: text/html; charset=utf-8\n'
     form = cgi.FieldStorage()
     if os.environ['REQUEST_METHOD']=='GET':
         print FORM_PAGE_TEMPLATE % {
@@ -117,7 +122,6 @@ def webit():
             'author':'',
             'subject':'',
             'message':'',
-            'env':`os.environ`,
             'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY),
       }
     else: # POST

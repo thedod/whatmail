@@ -9,7 +9,7 @@ SMTP_USERNAME=SMTP_FROM # for gmail (and usually), SMTP_FROM is what you need
 SMTP_PASSWORD='*******'
 SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 
-# You get these two at http://recaptcha.net/api/getkey
+# You get these two at https://www.google.com/recaptcha/
 RECAPTCHA_PUBLIC_KEY='****************'
 RECAPTCHA_PRIVATE_KEY='***************'
 
@@ -25,3 +25,7 @@ GPG_ENCRYPT_TO=['0x......'] # your key(s) here
 # permissions at GPG_HOMEDIR (if you get "Error: (7, 16383, u'End of file')" it's
 # either permissions, or you forgot to import a GPG_ENCRYPT_TO pubkey).
 GPG_HOMEDIR='/path/to/.gnupg'
+
+# REDIRECT_TO_SSL should be an https:// url or you'll loop
+# REDIRECT_TO_SSL='https://secure.example.com/path/to/whatmail/'
+REDIRECT_TO_SSL=''
