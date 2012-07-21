@@ -125,7 +125,7 @@ def webit():
             'message':'',
             'maybegpgtext':
                 GPG_ENABLED and ' (do <strong>not</strong> write secrets or passwords anywhere else)' or '',
-            'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=is_ssl(os.environ)),
+            'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True),
       }
     else: # POST
         errors=[]

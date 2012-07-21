@@ -1,0 +1,6 @@
+[submodule "recaptcha-client"]
+	path = recaptcha-client
+	url = https://github.com/stefantalpalaru/recaptcha-client.git
+[submodule "mysender"]
+	path = mysender
+	url = https://github.com/denever/mysender.git
