@@ -50,7 +50,7 @@ supply an `SSL_REDIRECT_TO` at `whatconf.py` (see below).
   the gpg homedir and all files there [created by the import], **except** for `pubring.pgp`
   where it should only have **read** permissions.
 
-### <a id="rfc"></a>Request for comments:
+### <a name="rfc"></a>Request for comments:
 
   Even if web server user (e.g. `www-data`) is not trusted, we can still give it write permissions
   to `secring.pgp` etc. (will be ignored anyway), but what about `random_seed`?
