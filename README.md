@@ -35,6 +35,11 @@ This would require [pygpgme](http://pypi.python.org/pypi/pygpgme/) and some conc
 If there's an alternative http url that gets to the same cgi script, it is **important** to
 supply an `SSL_REDIRECT_TO` at `whatconf.py` (see below).
 
+First thing, you need to make sure you have [gpgme](http://www.gnupg.org/related_software/gpgme/)
+and [pygpgme](http://pypi.python.org/pypi/pygpgme/) installed.  
+Simply try `import gpgme` from python and see if it works.  
+If it doesn't - installing them is beyond the scope of this README file, but it's doable :)
+
 * Create a script-specific gpg homedir. `./.gnupg` is a good idea since it's .gitignored :)
 * Export the recepient's pubkey (i.e. yours). E.g. do (on your desktop)
   `gpg -a --export me@example.com > me.asc` and copy the temporary `me.asc` to the server.
