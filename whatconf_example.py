@@ -1,4 +1,5 @@
 DEBUG_TO_WEB=False # set to True when debugging
+PAGE_TITLE='Write to yours truly'
 SMTP_FROM='myself@gmail.com' # An email address that you're allowed to send from
 SMTP_TOS=['me@home.org','gang@work.com'] # list of recepients
 SMTP_HOST='smtp.gmail.com' # This is for gmail, depends on your mail provider

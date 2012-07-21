@@ -12,7 +12,7 @@ Subject: %(subject)s
 FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Write to the Dod</title>
+  <title>%(title)s</title>
   <meta http-equiv="Content-Type" content=
   "text/html; charset=utf-8">
   <link rel="stylesheet" href="stylee.css" type="text/css" />
@@ -25,7 +25,7 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
       you need to pass the captcha test.</strong>
       %(captcha)s
     </div>
-    <h3>Write to The Dod</h3>
+    <h3>%(title)s</h3>
     <p>Stuff in <strong>bold</strong> is mandatory. International text כמו עברית is OK.</p>
       %(errorhtml)s
       <div class="field-wrapper">
@@ -38,7 +38,7 @@ FORM_PAGE_TEMPLATE="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "
       </div>
       <div class="field-wrapper">
         <td colspan="2">
-          <p>Message:<br/>
+          <p>Message%(maybegpgtext)s:<br/>
           <textarea class="field" cols="90" rows="8" name="message" id=
           "message">%(message)s</textarea></p>
           <p><input type="submit" value="Send"></p>
@@ -119,9 +119,12 @@ def webit():
         print FORM_PAGE_TEMPLATE % {
             'scriptname':scriptname,
             'errorhtml':'',
+            'title':PAGE_TITLE,
             'author':'',
             'subject':'',
             'message':'',
+            'maybegpgtext':
+                GPG_ENABLED and ' (only write secrets and passwords <strong>below</strong>)' or '',
             'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY),
       }
     else: # POST
