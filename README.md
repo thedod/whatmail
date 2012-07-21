@@ -47,10 +47,10 @@ supply an `SSL_REDIRECT_TO` at `whatconf.py` (see below).
   for the gpg homedir (this is why it should be script-specific, especially on shared machines).
 
   **After** you import the pubkey[s], make sure the web-server user has read/write permission to
-  the gpg homedir and all files in it (the import would create them), **except** for `pubring.pgp`
-  where it should only have **read** permissions).
+  the gpg homedir and all files there [created by the import], **except** for `pubring.pgp`
+  where it should only have **read** permissions.
 
-### <span id="rfc">Request for comments:</span>
+### <a id="rfc"></a>Request for comments:
 
   Even if web server user (e.g. `www-data`) is not trusted, we can still give it write permissions
   to `secring.pgp` etc. (will be ignored anyway), but what about `random_seed`?
