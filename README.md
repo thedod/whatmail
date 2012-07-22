@@ -61,7 +61,7 @@ If it doesn't - installing them is beyond the scope of this README file, but it'
   if the hosting provider has configured cgi scripts to run under _your own_ uid (e.g. at Webfaction).  
 
   If you're on a shared host where cgi scripts of all users run under _the same_ uid
-  (e.g. apache's `www-data`), **don't** try to chmod the homedir so that www-data has
+  (e.g. Apache's `www-data`), **don't** try to chmod the homedir so that www-data has
   rights at the gpg homedir. Better use an unecrypted form, so that your users know
   where they stand :)
 
@@ -75,4 +75,4 @@ Thanks to the authors of all the stuff glued here together:
   * [recaptcha](http://pypi.python.org/pypi/recaptcha-client/)
   * [mysender](https://github.com/denever/mysender/)
 
-Special thanks to _Mac_ for peer review.
+Special thanks to _Mack_ for peer review.
