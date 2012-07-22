@@ -5,7 +5,7 @@ and can handle utf-8, which is a crucial feature for me since not all my friends
 
 The GUI (big word for a form and a thankyou page) can be skinned with [mustache](http://mustache.github.com/mustache.5.html) templates. The default skin is [twitter bootstrap](http://twitter.github.com/bootstrap/) based, but anything goes, and skin pull-requests are welcome.
 
-If your form is served via SSL, you can also configure it to encrypt the mail it sends with [gpgme](http://www.gnupg.org/related_software/gpgme/) (plain old ascii-armor. not mime). Be careful when you set this up: the illusion of security can easily make you [lose your head](http://simonsingh.net/The_Black_Chamber/maryqueenofscots.html). [**Peer review is welcome**](#rfc).
+If your form is served via SSL, you can also configure it to encrypt the mail it sends with [gpgme](http://www.gnupg.org/related_software/gpgme/) (plain old ascii-armor. not mime). Be careful when you set this up: the illusion of security can easily make you [lose your head](http://simonsingh.net/The_Black_Chamber/maryqueenofscots.html). **Peer review is welcome**.
 
 There's no email address validation and no assumption that such an address is entered at all (friends can leave a name, strangers may decide to leave a phone number instead).
 Also note that the identity of the sender can't be verified (even when encryption is enabled, nothing is signed), but the again - your phone doesn't come with prank-call protection either :).
@@ -13,8 +13,7 @@ For what it's worth, the sender's ip number is included in the mail you receive.
 
 ### Installing
 
-* do `git submodule update --init` (to get [recaptcha](http://pypi.python.org/pypi/recaptcha-client/)
-  and [pystache](https://github.com/defunkt/pystache/)).
+* Run `git submodule update --init` to fetch dependencies.
 * Put all files (including .htaccess) in a web-accessible folder.
 * Check your .htaccess settings by accessing testcgi.py from web: If you see
   python source, do *not* continue to the next step (creating whatconf.py). This file
@@ -50,30 +49,30 @@ If it doesn't - installing them is beyond the scope of this README file, but it'
 
 * Create a script-specific gpg homedir (say, `./.gnupg`). If it's inside a web-accessible folder,
   **make sure homedir's name starts with a "."** (and verify that you can't get to files there via web).
-
 * Export the recepient's pubkey (i.e. yours). E.g. do (on your desktop)
   `gpg -a --export me@example.com > me.asc` and upload the temporary `me.asc` to the server.
-
 * Import the pubkey to the gpg homedir with `gpg --homedir ./.gnupg --import < me.asc`
-
 * Repeat with other pubkeys (if you want to encrypt to multiple recepients).
-
 * Edit `GPG_*` parameters at `whatconf.py` (`GPG_HOMEDIR` should be a full path starting with `/`).
-
 * It is recommended to write your script's SSL url as `SSL_REDIRECT_TO`.
   You **are** using SSL. Right? :)
+* **Note:** You should make sure your gpg homedir and the files in it are only readable by you
+  (chmod 700 for the folder and 600 for the files). This can also work on a shared host,
+  if the hosting provider has configured cgi scripts to run under _your own_ uid (e.g. at Webfaction).  
 
-* If the user running the web server isn't you (e.g. `www-data`), you'll need to setup permissions
-  for the gpg homedir (this is why it should be script-specific, especially on shared machines).
+  If you're on a shared host where cgi scripts of all users run under _the same_ uid
+  (e.g. apache's `www-data`), **don't** try to chmod the homedir so that www-data has
+  rights at the gpg homedir. Better use an unecrypted form, so that your users know
+  where they stand :)
 
-  **After** you import the pubkey[s], make sure the web-server user has read/write permission to
-  the gpg homedir and all files there [created by the import], **except** for `pubring.pgp`
-  where it should only have **read** permissions.
+### Thanks
 
-### <a name="rfc"></a>Request for comments:
+Thanks to the authors of all the stuff glued here together:
 
-  Even if web server user (e.g. `www-data`) is not trusted, there's no risk in giving it write
-  permissions to `secring.pgp` etc. (never used anyway), but what about `random_seed`?
-  Isn't it dangerous to let strangers have write permission there?
-  OTOH _can_ it be read only? (I know it _can_. Not sure it's a good idea, though).
+  * [gnupg](http://www.gnupg.org/), [gpgme](http://www.gnupg.org/related_software/gpgme/)
+    and [pygpgme](http://pypi.python.org/pypi/pygpgme/)
+  * [mustache](http://mustache.github.com/) and [pystache](https://github.com/defunkt/pystache)
+  * [recaptcha](http://pypi.python.org/pypi/recaptcha-client/)
+  * [mysender](https://github.com/denever/mysender/)
 
+Special thanks to _Mac_ for peer review.
