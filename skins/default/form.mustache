@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>{{title}}</title>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+  <link rel="stylesheet" href="stylee.css" type="text/css" />
+</head>
+<body>
+  <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
+        action="{{scriptname}}">
+    <div class="captcha">
+      <strong>To prove you're not a spam robot,<br/>
+      you need to pass the captcha test.</strong>
+      {{{captchahtml}}}
+    </div>
+    <h3>{{title}}</h3>
+    <p>Stuff in <strong>bold</strong> is mandatory. International text כמו עברית is OK.</p>
+      {{{errorhtml}}}
+      <div class="field-wrapper">
+          <div class="field-label"><strong>Name and/or email:</strong></div>
+          <input class="field" size="20" name="author" id="author" value="{{author}}">
+      </div>
+      <div class="field-wrapper">
+          <div class="field-label"><strong>subject:</strong></div>
+          <input class="field" size="30" name="subject" id="subject" value="{{subject}}">
+      </div>
+      <div class="field-wrapper">
+        <td colspan="2">
+		  <p>Message{{#is_ssl}} (<strong>don't</strong> enter secrets and passwords anywhere <strong>elsei</strong>){{/is_ssl}}:<br/>
+          <textarea class="field" cols="90" rows="8" name="message" id=
+          "message">{{message}}</textarea></p>
+          <p><input type="submit" value="Send"></p>
+      </div>
+  </form>
+  <a target="_blank" href="https://github.com/thedod/whatmail/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+</body>
+</html>

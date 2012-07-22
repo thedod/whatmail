@@ -14,7 +14,7 @@ This would require [pygpgme](http://pypi.python.org/pypi/pygpgme/) and some conc
 ### Installing
 
 * do `git submodule update --init` to get [recaptcha](http://pypi.python.org/pypi/recaptcha-client/)
-  and [mysender](https://github.com/denever/mysender/)
+  and [pystache](https://github.com/defunkt/pystache/)
 * Put all files (including .htaccess) in a web-accessible folder.
 * Check your .htaccess settings by accessing testcgi.py from web: If you see
   python source, do *not* continue to the next step (creating whatconf.py). This file

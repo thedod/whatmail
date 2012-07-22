@@ -14,7 +14,10 @@ SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 RECAPTCHA_PUBLIC_KEY='****************'
 RECAPTCHA_PRIVATE_KEY='***************'
 
-### gnupg (you need https://launchpad.net/pygpgme or apt-get python-gpgme)
+# Folder containing mustache templates
+SKIN_FOLDER='/path/to/skins/default'
+
+### gnupg (see README for details)
 GPG_ENABLED=False # Enable if you have gpgme and know how to conf this
 # This should work for most sane people:
 GPG_ENCRYPT_TO=SMTP_TOS
