@@ -15,7 +15,7 @@ RECAPTCHA_PUBLIC_KEY='****************'
 RECAPTCHA_PRIVATE_KEY='***************'
 
 # Folder containing mustache templates
-SKIN_FOLDER='/path/to/skins/default'
+SKIN_FOLDER='skins/default'
 
 ### gnupg (see README for details)
 GPG_ENABLED=False # Enable if you have gpgme and know how to conf this
