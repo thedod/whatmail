@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 from whatconf import *
 import pystache
-stache = pystache.Renderer(search_dirs=SKIN_FOLDER,file_encoding='utf-8',string_encoding='utf-8')
+stache = pystache.Renderer(
+    search_dirs=SKIN_FOLDER,file_encoding='utf-8',string_encoding='utf-8',file_extension='html')
 
 def is_ssl(env):
     return env.get('HTTPS','').lower()=='on' or env.get('HTTP_HTTPS','').lower()=='on'
@@ -60,6 +61,7 @@ def webit():
     form = cgi.FieldStorage()
     if os.environ['REQUEST_METHOD']=='GET':
         print stache.render(stache.load_template('form'),{
+            'skin':SKIN_FOLDER,
             'scriptname':scriptname,
             'errorhtml':'',
             'title':PAGE_TITLE,
@@ -89,12 +91,16 @@ def webit():
         if errors:
             errorhtml='<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))
             print stache.render(stache.load_template('form'),{
+                'skin':SKIN_FOLDER,
                 'scriptname':scriptname,
+                'title':PAGE_TITLE,
                 'errorhtml':errorhtml,
                 'author':author,
                 'subject':subject,
                 'message':form.getvalue('message',''),
-                'captcha':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,error=captcha_error),
+                'captchahtml':
+                    captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=captcha_error),
+                'is_encrypted': GPG_ENABLED,
             }).encode('utf-8')
         else:
             try:
@@ -106,6 +112,7 @@ def webit():
                 title='Message sending failed'
                 response='<strong>Error:</strong> %s' % str(e)
             print stache.render(stache.load_template('response'),{
+                'skin':SKIN_FOLDER,
                 'title':title,'responsehtml':response
             }).encode('utf-8')
 
