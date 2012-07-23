@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- Le styles -->
+  <link href="{{skin}}/css/bootstrap-rtl.min.css" rel="stylesheet">
+  <link href="{{skin}}/css/rtl.css" rel="stylesheet">
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+  </style>
+  <link href="{{skin}}/css/bootstrap-responsive-rtl.min.css" rel="stylesheet">
+</head>
+<body>
+ <div class="container">
+  <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
+       action="{{scriptname}}">
+    <div class="row">
+      <div class="span12 well" style="text-align:center">
+        <h2>{{title}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span7">
+        <div class="row">
+          <div class="span7">
+            {{#errorhtml}}
+              <div class="alert alert-error" style="direction:ltr">
+                {{{errorhtml}}}
+              </div>
+            {{/errorhtml}}
+	    <div class="well">חובה למלא את מה ש<strong>מודגש</strong></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span3">
+            <strong>מאת</strong> (שם/דואל/טלפון/וכו')<strong>:</strong>
+          </div>
+          <div class="span4">
+            <input class="span4" style="float:right" name="author" id="author" value="{{author}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="span2">
+            <strong>נושא:</strong>
+          </div>
+          <div class="span5">
+            <input class="span5" style="float:right" name="subject" id="subject" value="{{subject}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="span7">
+	    הודעה{{#is_encrypted}} (<strong>לא</strong> לכתוב סודות באף שדה <strong>אחר</strong>){{/is_encrypted}}:
+          </div>
+        </div>
+        <div class="row">
+          <div class="span7">
+            <textarea class="span7" style="float:right" rows="12" name="message" id="message">{{message}}</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="span5">
+        <div class="row">
+          <div class="span5">
+            <strong>טופס הוכחת אנושיות
+              (<a target="_blank" href="http://he.wikipedia.org/wiki/CAPTCHA#.D7.99.D7.99.D7.A9.D7.95.D7.9E.D7.99.D7.9D">captcha</a>)</strong>
+            <div style="direction:ltr">{{{captchahtml}}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span5">
+            <input class="btn btn-primary btn-large pull-right" type="submit" value="Send">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+ </div>
+<a target="_blank" href="https://github.com/thedod/whatmail/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+</body>
+</html>
