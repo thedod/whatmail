@@ -4,6 +4,10 @@
   <title>{{title}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <link rel="stylesheet" href="{{skin}}/css/bootstrap.min.css" type="text/css">
 </head>
 <body>
@@ -17,27 +21,31 @@
     </div>
     <div class="row">
       <div class="span7">
-        {{#errorhtml}}
-          <div class="alert alert-error">
-            {{{errorhtml}}}
-          </div>
-        {{/errorhtml}}
         <div class="row">
           <div class="span7">
-            Stuff in <strong>bold</strong> is mandatory. International text כמו עברית is OK.
+            {{#errorhtml}}
+              <div class="alert alert-error">
+                {{{errorhtml}}}
+              </div>
+            {{/errorhtml}}
+            <div class="well">Stuff in <strong>bold</strong> is mandatory. International text כמו עברית is OK.</div>
           </div>
         </div>
         <div class="row">
           <div class="span3">
             <strong>From</strong> (Email/phone/etc.)<strong>:</strong>
           </div>
-          <input class="span4" style="float:right" name="author" id="author" value="{{author}}">
+          <div class="span4">
+            <input class="span4" style="float:right" name="author" id="author" value="{{author}}">
+          </div>
         </div>
         <div class="row">
           <div class="span2">
             <strong>Subject:</strong>
           </div>
-          <input class="span5" style="float:right" name="subject" id="subject" value="{{subject}}">
+          <div class="span5">
+            <input class="span5" style="float:right" name="subject" id="subject" value="{{subject}}">
+          </div>
         </div>
         <div class="row">
           <div class="span7">
@@ -45,7 +53,9 @@
           </div>
         </div>
         <div class="row">
-          <textarea class="span7" style="float:right" rows="12" name="message" id="message">{{message}}</textarea>
+          <div class="span7">
+            <textarea class="span7" style="float:right" rows="12" name="message" id="message">{{message}}</textarea>
+          </div>
         </div>
       </div>
       <div class="span5">
