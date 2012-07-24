@@ -107,9 +107,6 @@ def webit():
             try:
                 sendit(author=form.getvalue('author'), ip=os.environ['REMOTE_ADDR'],
                     subject=form.getvalue('subject'), message=form.getvalue('message','(empty message)'))
-                title=MSG_SUCCESS_TITLE
-                response=stache.render(MSG_SUCCESS_TEMPLATE,{
-                })
                 print stache.render(stache.load_template('success'),{
                     'skin':SKIN_FOLDER,
                     'title':MSG_SUCCESS_TITLE,
