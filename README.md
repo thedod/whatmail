@@ -13,6 +13,7 @@ For what it's worth, the sender's ip number is included in the mail you receive.
 
 ### Installing
 
+* Get [recapcha keys](https://www.google.com/recaptcha/admin) for the form's domain.
 * Run `git submodule update --init` to fetch dependencies.
 * Put all files (including .htaccess) in a web-accessible folder.
 * Check your .htaccess settings by accessing testcgi.py from web: If you see
