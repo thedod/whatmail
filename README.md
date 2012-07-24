@@ -21,7 +21,7 @@ For what it's worth, the sender's ip number is included in the mail you receive.
   will contain passwords and keys, and you have to make sure it can't be accessible
   from web. If .htaccess doesn't do the trick, show it to your sysadmin and ask to config
   your folder at the apache according to what's written there.
-* copy `whatconf_example.py` to `whatconf.py` and edit it. See comments inside the file.
+* copy `whatconf_defaults.py` to `whatconf.py` and edit it. See comments inside the file.
 * That's it. You can now access the folder via web (e.g. `/whatmail/`) and get a contact form.
   Send yourself a message to congratulate yourself.
 

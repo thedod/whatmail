@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from whatconf_defaults import *
 from whatconf import *
 import pystache
 stache = pystache.Renderer(
@@ -11,10 +12,10 @@ def is_ssl(env):
 def sendit(host = SMTP_HOST, port=SMTP_PORT,
            keyfile = SMTP_KEYFILE, certfile = SMTP_CERTFILE,
            username = SMTP_USERNAME, password = SMTP_PASSWORD,
-           author = "A guy who knows a guy",
+           author = "nobody",
            ip = None,
-           subject = "Testing multilingual subject line כלומר זה רב שפתי בדבר הזה",
-           message = "This is in English,\r\nוזה בעברית"):
+           subject = "no subject",
+           message = "no message"):
     """Sends email."""
     if GPG_ENABLED:
         import gpgme
@@ -76,17 +77,17 @@ def webit():
         captcha_error=''
         author=form.getvalue('author','').strip()
         if not author:
-            errors.append("Empty name/email. I need to know how to get back to you.")
+            errors.append(MSG_EMPTY_FROM)
         subject=form.getvalue('subject','').strip()
         if not subject:
-            errors.append("Empty subject line. Tell me what it's about.")
+            errors.append(MSG_EMPTY_SUBJECT)
         captcha_response = captcha.submit(
             form.getvalue('recaptcha_challenge_field'),
             form.getvalue('recaptcha_response_field'),
             RECAPTCHA_PRIVATE_KEY,
             os.environ['REMOTE_ADDR'])
         if not captcha_response.is_valid:
-            errors.append("You've failed the captcha test. Convince me again that you're not a robot.")
+            errors.append(MSG_CAPTCHA_FAILED)
             captcha_error=captcha_response.error_code
         if errors:
             errorhtml='<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))
@@ -106,15 +107,21 @@ def webit():
             try:
                 sendit(author=form.getvalue('author'), ip=os.environ['REMOTE_ADDR'],
                     subject=form.getvalue('subject'), message=form.getvalue('message','(empty message)'))
-                title='Message sent'
-                response='Thank you, %s, for your message.' % form.getvalue('author')
+                title=MSG_SUCCESS_TITLE
+                response=stache.render(MSG_SUCCESS_TEMPLATE,{
+                })
+                print stache.render(stache.load_template('success'),{
+                    'skin':SKIN_FOLDER,
+                    'title':MSG_SUCCESS_TITLE,
+                    'sender':form.getvalue('author'),
+                    'subject':form.getvalue('subject')
+                }).encode('utf-8')
             except Exception,e:
-                title='Message sending failed'
-                response='<strong>Error:</strong> %s' % str(e)
-            print stache.render(stache.load_template('response'),{
-                'skin':SKIN_FOLDER,
-                'title':title,'responsehtml':response
-            }).encode('utf-8')
+                print stache.render(stache.load_template('fail'),{
+                    'skin':SKIN_FOLDER,
+                    'title':MSG_FAIL_TITLE,
+                    'error':str(e)
+                }).encode('utf-8')
 
 if __name__=='__main__':
     webit()

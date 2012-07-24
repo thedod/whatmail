@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
 DEBUG_TO_WEB=False # set to True when debugging
 PAGE_TITLE='Write to yours truly'
+PAGE_SUBLTITLE='A contact form'
+PAGE_SECURE_SUBTITLE='A secure contact form'
 SMTP_FROM='myself@gmail.com' # An email address that you're allowed to send from
 SMTP_TOS=['me@home.org','gang@work.com'] # list of recepients
 SMTP_HOST='smtp.gmail.com' # This is for gmail, depends on your mail provider
@@ -16,6 +19,22 @@ RECAPTCHA_PRIVATE_KEY='***************'
 
 # Folder containing mustache templates
 SKIN_FOLDER='skins/default'
+## ובעברית...
+# SKIN_FOLDER='skins/hebrew'
+
+# Messages
+MSG_EMPTY_FROM="Empty name/email. I need to know how to get back to you."
+MSG_EMPTY_SUBJECT="Empty subject line. Tell me what it's about."
+MSG_CAPTCHA_FAILED="You've failed the captcha test. Convince me again that you're not a robot."
+MSG_SUCCESS_TITLE="Mesage sent"
+MSG_FAIL_TITLE="Mesage sending failed"
+
+## ובעברית...
+#MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
+#MSG_EMPTY_SUBJECT="שורת נושא ריקה"
+#MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
+#MSG_SUCCESS_TITLE="ההודעה נשלחה"
+#MSG_FAIL_TITLE="תקלה בשליחת ההודעה"
 
 ### gnupg (see README for details)
 GPG_ENABLED=False # Enable if you have gpgme and know how to conf this
