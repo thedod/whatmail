@@ -117,7 +117,7 @@ def webit():
                 print stache.render(stache.load_template('fail'),{
                     'skin':SKIN_FOLDER,
                     'title':MSG_FAIL_TITLE,
-                    'error':str(e)
+                    'error': DEBUG_TO_WEB and str(e) or str(type(e))
                 }).encode('utf-8')
 
 if __name__=='__main__':
