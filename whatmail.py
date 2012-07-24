@@ -17,16 +17,6 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
            subject = "no subject",
            message = "no message"):
     """Sends email."""
-    if GPG_ENABLED:
-        import gpgme
-        from StringIO import StringIO
-        c=gpgme.Context()
-        c.set_engine_info(c.protocol,None,GPG_HOMEDIR)
-        c.armor=True
-        keys=[c.get_key(a) for a in GPG_ENCRYPT_TO]
-        cipher=StringIO()
-        c.encrypt(keys,gpgme.ENCRYPT_ALWAYS_TRUST,StringIO(message),cipher)
-        message=cipher.getvalue()
     from email.header import Header
     from email.mime.text import MIMEText
     from mysender import send
@@ -38,6 +28,16 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
         'subject':subject,
         'message':message,
     }).encode('utf-8')
+    if GPG_ENABLED:
+        import gpgme
+        from StringIO import StringIO
+        c=gpgme.Context()
+        c.set_engine_info(c.protocol,None,GPG_HOMEDIR)
+        c.armor=True
+        keys=[c.get_key(a) for a in GPG_ENCRYPT_TO]
+        cipher=StringIO()
+        c.encrypt(keys,gpgme.ENCRYPT_ALWAYS_TRUST,StringIO(body),cipher)
+        body=cipher.getvalue()
     msg=MIMEText(body,'plain','utf-8')
     msg.add_header('from',SMTP_FROM)
     for addr in SMTP_TOS:
