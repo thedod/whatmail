@@ -55,7 +55,10 @@ def webit():
         raise Exception,'Program should run as a cgi'
     if DEBUG_TO_WEB:
         import cgitb; cgitb.enable()
-    if REDIRECT_TO_SSL and not is_ssl(os.environ):
+    is_encrypted = False
+    if is_ssl(os.environ):
+        is_encrypted = GPG_ENABLED
+    elif REDIRECT_TO_SSL:
         print 'Location: %s\n' % REDIRECT_TO_SSL
         return
     print 'Content-type: text/html; charset=utf-8\n'
@@ -66,11 +69,12 @@ def webit():
             'scriptname':scriptname,
             'errorhtml':'',
             'title':PAGE_TITLE,
+            'subtitle':is_encrypted and SECURE_PAGE_SUBTITLE or PAGE_SUBTITLE,
             'author':'',
             'subject':'',
             'message':'',
             'captchahtml':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True),
-            'is_encrypted': GPG_ENABLED,
+            'is_encrypted': is_encrypted,
         }).encode('utf-8')
     else: # POST
         errors=[]
