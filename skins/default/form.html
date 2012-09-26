@@ -52,7 +52,7 @@
         </div>
         <div class="row">
           <div class="span2">
-            <strong>Subject:</strong>
+            <strong>Subject</strong>{{#is_encrypted}} (<strong>no</strong> secrets here){{/is_encrypted}}:
           </div>
           <div class="span5">
             <input class="span5 pull-right" name="subject" id="subject" value="{{subject}}">
@@ -60,7 +60,7 @@
         </div>
         <div class="row">
           <div class="span7">
-	    Message{{#is_encrypted}} (<strong>don't</strong> enter secrets and passwords in any <strong>other</strong> field){{/is_encrypted}}:
+	    Message:
           </div>
         </div>
         <div class="row">
