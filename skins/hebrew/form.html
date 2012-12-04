@@ -19,9 +19,11 @@
   <link href="{{skin}}/css/bootstrap-rtl.min.css" rel="stylesheet">
   <link href="{{skin}}/css/rtl.css" rel="stylesheet">
   <link href="{{skin}}/css/bootstrap-responsive-rtl.min.css" rel="stylesheet">
-  <script type="text/javascript">
-    var RecaptchaOptions = { theme : 'blackglass' };
-  </script>
+  {{#captchahtml}}
+    <script type="text/javascript">
+      var RecaptchaOptions = { theme : 'blackglass' };
+    </script>
+  {{/captchahtml}}
 </head>
 <body>
  <div class="container">
@@ -74,14 +76,16 @@
         </div>
       </div>
       <div class="span5">
-        <div class="row">
-          <div class="span5">
-            <h4>הוכחת אנושיות
-              (<a target="_blank" href="http://he.wikipedia.org/wiki/CAPTCHA#.D7.99.D7.99.D7.A9.D7.95.D7.9E.D7.99.D7.9D">captcha</a>)</h4>
-            נא להקליד את שתי המילים המטושטשות כדי להוכיח שאת/ה לא רובוט שמנסה לשלוח דואר זבל
-            <p><div style="direction:ltr">{{{captchahtml}}}</div></p>
+        {{#captchahtml}}
+          <div class="row">
+            <div class="span5">
+              <h4>הוכחת אנושיות
+                (<a target="_blank" href="http://he.wikipedia.org/wiki/CAPTCHA#.D7.99.D7.99.D7.A9.D7.95.D7.9E.D7.99.D7.9D">captcha</a>)</h4>
+              נא להקליד את שתי המילים המטושטשות כדי להוכיח שאת/ה לא רובוט שמנסה לשלוח דואר זבל
+              <p><div style="direction:ltr">{{{captchahtml}}}</div></p>
+            </div>
           </div>
-        </div>
+        {{/captchahtml}}
         <div class="row">
           <div class="span5">
             <input class="btn btn-primary btn-large pull-right" type="submit" value="שליחת הודעה">

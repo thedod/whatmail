@@ -13,9 +13,12 @@ SMTP_USERNAME=SMTP_FROM # for gmail (and usually), SMTP_FROM is what you need
 SMTP_PASSWORD='*******'
 SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 
-# You get these two at https://www.google.com/recaptcha/admin
-RECAPTCHA_PUBLIC_KEY='****************'
-RECAPTCHA_PRIVATE_KEY='***************'
+### You get these two at https://www.google.com/recaptcha/admin
+# RECAPTCHA_PUBLIC_KEY='****************'
+# RECAPTCHA_PRIVATE_KEY='***************'
+### But you don't have to use recaptcha
+RECAPTCHA_PUBLIC_KEY=None
+RECAPTCHA_PRIVATE_KEY=None
 
 # Folder containing mustache templates
 SKIN_FOLDER='skins/default'

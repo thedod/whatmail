@@ -48,7 +48,8 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
 def webit():
     import os,cgi
     from exceptions import Exception
-    from recaptcha.client import captcha
+    if RECAPTCHA_PUBLIC_KEY:
+        from recaptcha.client import captcha
     try:
         scriptname=os.environ['SCRIPT_NAME']
     except: 
@@ -73,26 +74,27 @@ def webit():
             'author':'',
             'subject':'',
             'message':'',
-            'captchahtml':captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True),
+            'captchahtml':RECAPTCHA_PUBLIC_KEY and captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True) or None,
             'is_encrypted': is_encrypted,
         }).encode('utf-8')
     else: # POST
         errors=[]
-        captcha_error=''
         author=form.getvalue('author','').strip()
         if not author:
             errors.append(MSG_EMPTY_FROM)
         subject=form.getvalue('subject','').strip()
         if not subject:
             errors.append(MSG_EMPTY_SUBJECT)
-        captcha_response = captcha.submit(
-            form.getvalue('recaptcha_challenge_field'),
-            form.getvalue('recaptcha_response_field'),
-            RECAPTCHA_PRIVATE_KEY,
-            os.environ['REMOTE_ADDR'])
-        if not captcha_response.is_valid:
-            errors.append(MSG_CAPTCHA_FAILED)
-            captcha_error=captcha_response.error_code
+        if RECAPTCHA_PUBLIC_KEY:
+            captcha_error=''
+            captcha_response = captcha.submit(
+                form.getvalue('recaptcha_challenge_field'),
+                form.getvalue('recaptcha_response_field'),
+                RECAPTCHA_PRIVATE_KEY,
+                os.environ['REMOTE_ADDR'])
+            if not captcha_response.is_valid:
+                errors.append(MSG_CAPTCHA_FAILED)
+                captcha_error=captcha_response.error_code
         if errors:
             errorhtml='<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))
             print stache.render(stache.load_template('form'),{
@@ -104,7 +106,7 @@ def webit():
                 'subject':subject,
                 'message':form.getvalue('message',''),
                 'captchahtml':
-                    captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=captcha_error),
+                    RECAPTCHA_PUBLIC_KEY and captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=captcha_error) or None,
                 'is_encrypted': GPG_ENABLED,
             }).encode('utf-8')
         else:

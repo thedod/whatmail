@@ -15,9 +15,11 @@
     }
   </style>
   <link rel="stylesheet" href="{{skin}}/css/bootstrap.min.css" type="text/css">
-  <script type="text/javascript">
-    var RecaptchaOptions = { theme : 'blackglass' };
-  </script>
+  {{#captchahtml}}
+    <script type="text/javascript">
+      var RecaptchaOptions = { theme : 'blackglass' };
+    </script>
+  {{/captchahtml}}
 </head>
 <body>
  <div class="container">
@@ -70,13 +72,15 @@
         </div>
       </div>
       <div class="span5">
-        <div class="row">
-          <div class="span5">
-            <strong>To prove you're not a spam robot,<br>
-            you need to pass the captcha test.</strong>
-            <p>{{{captchahtml}}}</p>
+        {{#captchahtml}}
+          <div class="row">
+            <div class="span5">
+              <strong>To prove you're not a spam robot,<br>
+              you need to pass the captcha test.</strong>
+              <p>{{{captchahtml}}}</p>
+            </div>
           </div>
-        </div>
+        {{/captchahtml}}
         <div class="row">
           <div class="span5">
             <input class="btn btn-primary btn-large" type="submit" value="Send message">
