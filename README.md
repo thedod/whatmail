@@ -1,3 +1,41 @@
+### The TipWire branch
+
+While Whatmail is a general-purpose contact for script (and gpgme encryption only comes as an option),
+TipWire is a special-purpose form intended for communication between a `source` (a casual anonymous user) and a `desk`
+(a person or a team with enough skills to read gpg mail, and enough resources to run this form
+(and - preferably - an [Etherpad-Lite server](http://etherpad.org)) behind SSL.
+
+The form lets the `source` provide a secret pad-id that is later use as the id of an etherpad.
+
+#### Why?
+
+This is an experiment in what I call "uneven cryptography" (the term "asymmetric" was taken :).
+The [idea](https://dubiousdod.org/go/Crypto4Dummies) is that although encrypted communication requires more skills than
+we can expect most whistle-blowers/activists/etc. to develop (or even understand their necessity), one side of the secure
+channel can compensate for the lack of the other's skills by investing extra skills and resources.
+
+Possible `desk`s can include:
+
+* A newspaper/site news desk allowing whistle blowers to contact it
+* A lone investigative journalist/blogger
+* An ctivist organization (live reports from demonstrations)
+
+#### To do
+
+* Implement captcha (although whatmail supports google's recaptcha, it is conter-productive for such delicate uses to inform
+  google which `source` was using what `desk`.
+* Only allow API creation of pads (at the moment, users can create arbitrary pads and DoS the Etherpad).
+  This would require creation of pads via API as a side effect of a successful form post
+  (and if this comes with a captcha - we'll hopefully be protected from DoS).
+* Better user-experience for `source`s (GUI, help text, documentation, etc.)
+* Easier deployment (make it easier to open a new `desk`)
+
+----------------------------
+
+Below you'll find the original README from the master branch
+
+----------------------------
+
 ### WhatMail by [@TheRealDod](http://twitter.com/TheRealDod)
 
 This is a simple cgi contact form that 

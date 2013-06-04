@@ -13,6 +13,7 @@
       padding-top: 60px;
       padding-bottom: 40px;
     }
+    .well {font-size:130%;line-height:150%}
   </style>
   <link rel="stylesheet" href="{{skin}}/css/bootstrap.min.css" type="text/css">
   {{#captchahtml}}
@@ -41,28 +42,47 @@
                 {{{errorhtml}}}
               </div>
             {{/errorhtml}}
-            <div class="well">Stuff in <strong>bold</strong> is mandatory. International text כמו עברית is OK.</div>
+            <div class="well">
+              <p>This form offers a way to securely and anonymously chat with us via an <a target="_blank" href="http://ethepad.org">etherpad</a> at
+                 <strong>{{idprefix}}/<code>pad-id</code></strong> where <code>pad-id</code> is a <strong>secret</strong> you choose yourself.<br>
+                 The pad-id you choose should:</p>
+              <ul>
+                <li>Be easy [for you] to remember (so that you don't have to write it down), yet hard [for anyone else] to guess.</li>
+                <li>Only contain letters, numbers, "-", and "_" (e.g. <em>I-have-a-fAt-d0g-w1thout-a-nos3</em>).</li>
+                <li>Be at least {{idminchars}} characters long.</li>
+                <li>Not be something you saw on the net (e.g. <em>don't</em> use <em>I-have-a-fAt-d0g-w1thout-a-nos3</em> ;) ).</li>
+              </ul>
+              <p>Recommended precautions:</p>
+              <ul>
+                <li>Use a browser that doesn't save history (e.g. a
+                    <a target="_blank" href="https://support.mozilla.org/en-US/kb/private-browsing-browse-web-without-saving-info">Firefox private window</a>
+                    or a
+                    <a target="_blank" href="https://support.google.com/chrome/answer/95464">Chrome incognito window</a>).</li>
+                <li>If possible, use <a target="_blank" href="https://www.torproject.org">tor</a> to avoid
+                    <a target="_blank" href="https://en.wikipedia.org/wiki/Traffic_analysis">traffic analysis</a>.</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="span3">
-            <strong>From</strong> (Email/phone/etc.)<strong>:</strong>
+          <div class="span1">
+            <strong>Pad-id:</strong>
           </div>
-          <div class="span4">
-            <input class="span4 pull-right" name="author" id="author" value="{{author}}">
+          <div class="span6">
+            {{idprefix}}/<input type="password" class="span4 pull-right" name="pad-id" id="pad-id">
           </div>
         </div>
         <div class="row">
-          <div class="span2">
-            <strong>Subject</strong>{{#is_encrypted}} (<strong>no</strong> secrets here){{/is_encrypted}}:
+          <div class="span1">
+            <strong>(again):</strong>
           </div>
-          <div class="span5">
-            <input class="span5 pull-right" name="subject" id="subject" value="{{subject}}">
+          <div class="span6">
+            {{idprefix}}/<input type="password" class="span4 pull-right" name="pad-id2" id="pad-id2">
           </div>
         </div>
         <div class="row">
           <div class="span7">
-	    Message:
+	    [Optional] message:
           </div>
         </div>
         <div class="row">
@@ -83,7 +103,7 @@
         {{/captchahtml}}
         <div class="row">
           <div class="span5">
-            <input class="btn btn-primary btn-large" type="submit" value="Send message">
+            <input class="btn btn-primary btn-large" type="submit" value="Request chat">
           </div>
         </div>
       </div>

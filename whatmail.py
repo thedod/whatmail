@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 from whatconf_defaults import *
 from whatconf import *
+import re
+RE_SLUG = re.compile(r'^[a-zA-Z0-9_\-]+$')
+
 import pystache
 stache = pystache.Renderer(
     search_dirs=SKIN_FOLDER,file_encoding='utf-8',string_encoding='utf-8',file_extension='html')
@@ -22,10 +25,8 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
     from mysender import send
     from time import asctime,gmtime
     body=stache.render(stache.load_template('message'), {
-        'author':author,
         'iptext':ip and ('IP number: %s, ' % ip) or '',
         'gmtime':asctime(gmtime()),
-        'subject':subject,
         'message':message,
     }).encode('utf-8')
     if GPG_ENABLED:
@@ -67,24 +68,26 @@ def webit():
     if os.environ['REQUEST_METHOD']=='GET':
         print stache.render(stache.load_template('form'),{
             'skin':SKIN_FOLDER,
+            'idprefix':PAD_ID_PREFIX,
+            'idminchars':PAD_ID_MINCHARS,
             'scriptname':scriptname,
             'errorhtml':'',
             'title':PAGE_TITLE,
             'subtitle':is_encrypted and SECURE_PAGE_SUBTITLE or PAGE_SUBTITLE,
-            'author':'',
-            'subject':'',
             'message':'',
             'captchahtml':RECAPTCHA_PUBLIC_KEY and captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True) or None,
             'is_encrypted': is_encrypted,
         }).encode('utf-8')
     else: # POST
         errors=[]
-        author=form.getvalue('author','').strip()
-        if not author:
-            errors.append(MSG_EMPTY_FROM)
-        subject=form.getvalue('subject','').strip()
-        if not subject:
-            errors.append(MSG_EMPTY_SUBJECT)
+        pad_id=form.getvalue('pad-id','').strip()
+        if len(pad_id)<PAD_ID_MINCHARS:
+            errors.append(MSG_SHORT_PAD_ID)
+        if not RE_SLUG.match(pad_id):
+            errors.append(MSG_BAD_SLUG)
+        pad_id2=form.getvalue('pad-id2','').strip()
+        if pad_id2!=pad_id:
+            errors.append(MSG_PAD_ID_MISMATCH)
         if RECAPTCHA_PUBLIC_KEY:
             captcha_error=''
             captcha_response = captcha.submit(
@@ -102,8 +105,7 @@ def webit():
                 'scriptname':scriptname,
                 'title':PAGE_TITLE,
                 'errorhtml':errorhtml,
-                'author':author,
-                'subject':subject,
+                'idprefix':PAD_ID_PREFIX,
                 'message':form.getvalue('message',''),
                 'captchahtml':
                     RECAPTCHA_PUBLIC_KEY and captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=captcha_error) or None,
@@ -111,13 +113,14 @@ def webit():
             }).encode('utf-8')
         else:
             try:
-                sendit(author=form.getvalue('author'), ip=os.environ['REMOTE_ADDR'],
-                    subject=form.getvalue('subject'), message=form.getvalue('message','(empty message)'))
+                sendit(ip=os.environ['REMOTE_ADDR'],
+                    subject=MSG_TMP_SUBJECT,
+                    message='Pad id: {0}/{1}\n{2}'.format(
+                        PAD_ID_PREFIX, pad_id, form.getvalue('message','(empty message)')))
                 print stache.render(stache.load_template('success'),{
                     'skin':SKIN_FOLDER,
                     'title':MSG_SUCCESS_TITLE,
-                    'sender':form.getvalue('author'),
-                    'subject':form.getvalue('subject')
+                    'padurl':pad_id
                 }).encode('utf-8')
             except Exception,e:
                 print stache.render(stache.load_template('fail'),{

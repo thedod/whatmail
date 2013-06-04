@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 DEBUG_TO_WEB=False # set to True when debugging
-PAGE_TITLE='Write to yours truly'
-PAGE_SUBTITLE='A contact form' # html is allowed here
-SECURE_PAGE_SUBTITLE='A secure contact form' # subtitle when both gpg and ssl are on. html allowed.
+PAGE_TITLE='Request a TipWire chat'
+PAGE_SUBTITLE='Warning: insecure instance!' # html is allowed here
+SECURE_PAGE_SUBTITLE=PAGE_SUBTITLE # subtitle when both gpg and ssl are on. html allowed.
 SMTP_FROM='myself@gmail.com' # An email address that you're allowed to send from
 SMTP_TOS=['me@home.org','gang@work.com'] # list of recepients
 SMTP_HOST='smtp.gmail.com' # This is for gmail, depends on your mail provider
@@ -11,33 +11,39 @@ SMTP_KEYFILE=None # If you know what it is, you know what to put there
 SMTP_CERTFILE=None # Ditto
 SMTP_USERNAME=SMTP_FROM # for gmail (and usually), SMTP_FROM is what you need
 SMTP_PASSWORD='*******'
-SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
+SUBJECT_PREFIX='[TipWire] ' # subject line prefix. good for mail filters
+PAD_ID_PREFIX='https://piratenpad.de/p'
+PAD_ID_MINCHARS=32
 
 ### You get these two at https://www.google.com/recaptcha/admin
 # RECAPTCHA_PUBLIC_KEY='****************'
 # RECAPTCHA_PRIVATE_KEY='***************'
-### But you don't have to use recaptcha
+### But you don't have to use recaptcha (what they don't know, won't hurt you :) )
 RECAPTCHA_PUBLIC_KEY=None
 RECAPTCHA_PRIVATE_KEY=None
 
 # Folder containing mustache templates
 SKIN_FOLDER='skins/default'
 ## ובעברית...
-# SKIN_FOLDER='skins/hebrew'
+#!!!!! Not TipWire-ready yet
+#SKIN_FOLDER='skins/hebrew'
 
 # Messages
-MSG_EMPTY_FROM="Empty name/email. I need to know how to get back to you."
-MSG_EMPTY_SUBJECT="Empty subject line. Tell me what it's about."
+MSG_TMP_SUBJECT = "Chat request" # In the future, perhaps random mnemonics? Whadever
+MSG_SHORT_PAD_ID = "Chat-id should be at least {0} characters long.".format(PAD_ID_MINCHARS)
+MSG_BAD_SLUG = 'Chat-id should only contain letters, digits, "-", and "_".'
+MSG_PAD_ID_MISMATCH = "You should enter the same chat-id in both fields."
 MSG_CAPTCHA_FAILED="You've failed the captcha test. Convince me again that you're not a robot."
-MSG_SUCCESS_TITLE="Mesage sent"
+MSG_SUCCESS_TITLE="Chat request sent"
 MSG_FAIL_TITLE="Mesage sending failed"
 
 ## ובעברית...
-#MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
-#MSG_EMPTY_SUBJECT="שורת נושא ריקה"
-#MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
-#MSG_SUCCESS_TITLE="ההודעה נשלחה"
-#MSG_FAIL_TITLE="תקלה בשליחת ההודעה"
+#!!!!! Not TipWire-ready yet
+# MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
+# MSG_EMPTY_SUBJECT="שורת נושא ריקה"
+# MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
+# MSG_SUCCESS_TITLE="ההודעה נשלחה"
+# MSG_FAIL_TITLE="תקלה בשליחת ההודעה"
 
 ### gnupg (see README for details)
 GPG_ENABLED=False # Enable if you have gpgme and know how to conf this
