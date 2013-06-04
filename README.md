@@ -1,9 +1,9 @@
-### The TipWire branch
+### The TipWire branch ([see demo](https://swatwt.com/tipwire/))
 
 While Whatmail is a general-purpose contact for script (and gpgme encryption only comes as an option),
 TipWire is a special-purpose form intended for communication between a `source` (a casual anonymous user) and a `desk`
 (a person or a team with enough skills to read gpg mail, and enough resources to run this form
-(and - preferably - an [Etherpad-Lite server](http://etherpad.org)) behind SSL.
+(and an [Etherpad-Lite server](http://etherpad.org)) behind SSL.
 
 The form lets the `source` provide a secret pad-id that is later use as the id of an etherpad.
 
