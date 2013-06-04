@@ -29,6 +29,7 @@ Possible `desk`s can include:
   (and if this comes with a captcha - we'll hopefully be protected from DoS).
 * Better user-experience for `source`s (GUI, help text, documentation, etc.)
 * Easier deployment (make it easier to open a new `desk`)
+* Switch from cgi to something more modern (pybottle?)
 
 ----------------------------
 
