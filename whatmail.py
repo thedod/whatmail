@@ -120,7 +120,7 @@ def webit():
                 print stache.render(stache.load_template('success'),{
                     'skin':SKIN_FOLDER,
                     'title':MSG_SUCCESS_TITLE,
-                    'padurl':pad_id
+                    'padurl':'/'.join([PAD_ID_PREFIX,pad_id])
                 }).encode('utf-8')
             except Exception,e:
                 print stache.render(stache.load_template('fail'),{
