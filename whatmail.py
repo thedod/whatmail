@@ -113,7 +113,7 @@ def webit():
             }).encode('utf-8')
         else:
             try:
-                sendit(ip=os.environ['REMOTE_ADDR'],
+                sendit(ip='', # we want this to be anonymous, not ip=os.environ['REMOTE_ADDR'],
                     subject=MSG_TMP_SUBJECT,
                     message='Pad id: {0}/{1}\n{2}'.format(
                         PAD_ID_PREFIX, pad_id, form.getvalue('message','(empty message)')))
