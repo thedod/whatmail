@@ -1,5 +1,9 @@
 ### The TipWire branch ([see demo](https://swatwt.com/tipwire/))
 
+**update:** I've received some feedback (feel free to [contribute yours](https://swatwt.com/tipwire/)).
+I keep track of it at [the wiki](https://github.com/thedod/whatmail/wiki/tipwire).
+I'm having second thoughts whether TipWire is such a good idea :(
+
 While Whatmail is a general-purpose contact for script (and gpgme encryption only comes as an option),
 TipWire is a special-purpose form intended for communication between a `source` (a casual user) and a `desk`
 (a person or a team with enough skills to read gpg mail, and enough resources to run this form
@@ -18,7 +22,7 @@ Possible `desk`s can include:
 
 * A newspaper/site news desk allowing whistle blowers to contact it
 * A lone investigative journalist/blogger
-* An ctivist organization (live reports from demonstrations)
+* An activist organization (e.g. receive live reports from demonstrations)
 
 #### To do
 
