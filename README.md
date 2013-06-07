@@ -5,7 +5,7 @@ TipWire is a special-purpose form intended for communication between a `source` 
 (a person or a team with enough skills to read gpg mail, and enough resources to run this form
 (and an [Etherpad-Lite server](http://etherpad.org)) behind SSL.
 
-The [wiki page]((https://github.com/thedod/whatmail/wiki/tipwire) is where I [try to] describe the system.
+The [wiki page](https://github.com/thedod/whatmail/wiki/tipwire) is where I [try to] describe the system.
 This is also where I document relevant [feedback](https://github.com/thedod/whatmail/wiki/tipwire#criticism-so-far)
 I get via the [demo form](https://swatwt.com/tipwire/) or otherwise.
 
