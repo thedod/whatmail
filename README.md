@@ -1,28 +1,13 @@
 ### The TipWire branch ([see demo](https://swatwt.com/tipwire/))
 
-**update:** I've received some feedback (feel free to [contribute yours](https://swatwt.com/tipwire/)).
-I keep track of it at [the wiki](https://github.com/thedod/whatmail/wiki/tipwire).
-I'm having second thoughts whether TipWire is such a good idea :(
-
 While Whatmail is a general-purpose contact for script (and gpgme encryption only comes as an option),
 TipWire is a special-purpose form intended for communication between a `source` (a casual user) and a `desk`
 (a person or a team with enough skills to read gpg mail, and enough resources to run this form
 (and an [Etherpad-Lite server](http://etherpad.org)) behind SSL.
 
-The form lets the `source` provide a secret pad-id that is later use as the id of an etherpad.
-
-#### Why?
-
-This is an experiment in what I call "uneven cryptography" (the term "asymmetric" was taken :).
-The [idea](https://dubiousdod.org/go/Crypto4Dummies) is that although encrypted communication requires more skills than
-we can expect most whistle-blowers/activists/etc. to develop (or even understand their necessity), one side of the secure
-channel can compensate for the lack of the other's skills by investing extra skills and resources.
-
-Possible `desk`s can include:
-
-* A newspaper/site news desk allowing whistle blowers to contact it
-* A lone investigative journalist/blogger
-* An activist organization (e.g. receive live reports from demonstrations)
+The [wiki page]((https://github.com/thedod/whatmail/wiki/tipwire) is where I [try to] describe the system.
+This is also where I document relevant [feedback](https://github.com/thedod/whatmail/wiki/tipwire#criticism-so-far)
+I get via the [demo form](https://swatwt.com/tipwire/) or otherwise.
 
 #### To do
 
@@ -37,7 +22,7 @@ Possible `desk`s can include:
 
 ----------------------------
 
-Below you'll find the original README from the master branch
+Below you'll find the original README from the master branch of the WhatMail contact form script
 
 ----------------------------
 
