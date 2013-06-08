@@ -55,10 +55,11 @@
         </div>
         <div class="row">
           <div class="span2">
-            <strong>Pad-id</strong>: <a class="btn btn-info" href="#pad-id-help"><i class="icon-info-sign icon-white"></i> What's this?</a>.
+            <strong>Pad-id</strong>:
+            <a class="btn btn-info" href="#pad-id-help"><i class="icon-info-sign icon-white"></i> What's this?</a>.
           </div>
           <div class="span5">
-            <input type="password" class="span5" name="pad-id" id="pad-id">
+            <input class="span5" name="pad-id" id="pad-id">
           </div>
         </div>
         <div class="row">
@@ -66,12 +67,14 @@
             <strong>Pad-id</strong> (again):
           </div>
           <div class="span5">
-            <input type="password" class="span5" name="pad-id2" id="pad-id2">
+            <input class="span5" name="pad-id2" id="pad-id2">
           </div>
         </div>
         <div class="row">
           <div class="span7">
-	    [Optional] message:
+            <br> <!-- ug-lee -->
+	    <p>[Optional] encrypted message:
+            <a class="btn btn-info" href="#encrypted-help"><i class="icon-info-sign icon-white"></i> Isn't it <em>all</em> encrypted?</a></p>
           </div>
         </div>
         <div class="row">
@@ -118,8 +121,33 @@
                     <li>Be easy [for you] to remember, yet hard [for anyone else] to guess
                         (e.g. a variation on the punch-line of a joke your granny used to tell in a foreign language).</li>
                   </ul>
+                  <a class="btn btn-info" href="#form-top"><i class="icon-arrow-up icon-white"></i>Back</a>
                 </dd>
-                <a class="btn btn-info" href="#form-top"><i class="icon-arrow-up icon-white"></i>Back</a>
+                <dt id="encrypted-help">Why the "encrypted message" field? Isn't the pad encrypted as well?</dt>
+                <dd>
+                  <p>The only thing encrypted is <em>communication</em> between you and the etherpad server.
+                     The pads are stored on the server's disk unencrypted, and that information might be compromised in
+                     some scenarios(a pad-id leaks, someone gains control over the server, etc.).<br>
+                     It's true that you can always delete the entire pad you're in, but
+                     how would that work in practice?
+                     Suppose you want to say something sensitive, and delete the pad
+                     as soon as your peer confirms
+                     reading the information
+                     (at the price of losing all its content and history).
+                     What do you do if there's no one on the other side? Wait until someone is online?
+                     What should your peer do with the message you're about to delete?
+                     Copy/paste the information? Where?
+                  </p>
+                  <p>The <em>encrypted message</em> field lets you send your message as a
+                     <a target="_blank" href="http://gnupg.org/">GnuPG</a> encrypted email. It is kept encrypted
+                     on the personal inbox[es] of team member[s] and only gets decrypted temporarily "on a need to know basis"
+                     by people who are [hopefully] security-minded, and [even more hopefully] would try their best
+                     to refuse decrypting these messages if coerced to do so (disclaimer: this sentence isn't
+                     legally binding. My client wasn't thinking).
+                  </p>
+                  <p>Bottom line: if it's <em>really</em> sensitive, don't mention it at the pad. Send an encrypted message instead.
+                  <a class="btn btn-info" href="#form-top"><i class="icon-arrow-up icon-white"></i>Back</a>
+                </dd>
               </dl>
             </div>
           </div>
