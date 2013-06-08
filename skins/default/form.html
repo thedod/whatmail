@@ -4,16 +4,11 @@
   <title>{{title}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
   <style type="text/css">
     body {
       padding-top: 60px;
       padding-bottom: 40px;
     }
-    .well {font-size:130%;line-height:150%}
   </style>
   <link rel="stylesheet" href="{{skin}}/css/bootstrap.min.css" type="text/css">
   {{#captchahtml}}
@@ -42,17 +37,10 @@
                 {{{errorhtml}}}
               </div>
             {{/errorhtml}}
-            <div class="well">
-              <p>This form offers a way to securely chat with us via an <a target="_blank" href="http://ethepad.org">etherpad</a> at
-                 <strong>{{idprefix}}/<code>pad-id</code></strong> where <code>pad-id</code> is a <strong>secret</strong> you choose yourself.<br>
-                 The pad-id you choose should:</p>
-              <ul>
-                <li>Be easy [for you] to remember (so that you don't have to write it down), yet hard [for anyone else] to guess.</li>
-                <li>Only contain letters, numbers, "-", and "_" (e.g. <em>I-have-a-fAt-d0g-w1thout-a-nos3</em>).</li>
-                <li>Be at least {{idminchars}} characters long.</li>
-                <li>Not be something you saw on the net (e.g. <em>don't</em> use <em>I-have-a-fAt-d0g-w1thout-a-nos3</em> ;) ).</li>
-              </ul>
-              <p>Recommended precautions:</p>
+            <div class="well" id="form-top">
+              <strong>Warning! Experimental!</strong><br>
+              This form offers a way to securely send us a message and/or initiate a secure chat with us.<br>
+              Recommended precautions:
               <ul>
                 <li>Use a browser that doesn't save history (e.g. a
                     <a target="_blank" href="https://support.mozilla.org/en-US/kb/private-browsing-browse-web-without-saving-info">Firefox private window</a>
@@ -62,24 +50,23 @@
                      if anonymity is a concern for you, you should use <a target="_blank" href="https://www.torproject.org">tor</a>
                      to avoid <a target="_blank" href="https://en.wikipedia.org/wiki/Traffic_analysis">traffic analysis</a> by others.</li>
               </ul>
-              </p>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="span1">
-            <strong>Pad-id:</strong>
+          <div class="span2">
+            <strong>Pad-id</strong>: <a class="btn btn-info" href="#pad-id-help"><i class="icon-info-sign icon-white"></i> What's this?</a>.
           </div>
-          <div class="span6">
-            {{idprefix}}/<input type="password" class="span4 pull-right" name="pad-id" id="pad-id">
+          <div class="span5">
+            <input type="password" class="span5" name="pad-id" id="pad-id">
           </div>
         </div>
         <div class="row">
-          <div class="span1">
-            <strong>(again):</strong>
+          <div class="span2">
+            <strong>Pad-id</strong> (again):
           </div>
-          <div class="span6">
-            {{idprefix}}/<input type="password" class="span4 pull-right" name="pad-id2" id="pad-id2">
+          <div class="span5">
+            <input type="password" class="span5" name="pad-id2" id="pad-id2">
           </div>
         </div>
         <div class="row">
@@ -90,6 +77,51 @@
         <div class="row">
           <div class="span7">
             <textarea class="span7" rows="12" name="message" id="message">{{message}}</textarea>
+          </div>
+        </div>
+        <div class="row" id="pad-id-help">
+          <div class="span7">
+            <div class="well">
+              <dl>
+                <dt>What is a pad-id?</dt>
+                <dd>
+                  <p>The chat will be conducted via an <a target="_blank" href="http://ethepad.org">etherpad</a> at
+                  <strong>{{idprefix}}/<code>pad-id</code></strong><br>
+                  where <code>pad-id</code> is a <strong>secret</strong>
+                  you should choose and [hopefully] memorize (you shouldn't write it down anywhere).</p>
+                  <p>It's a bit like registering an account in social networks or other services, only instead of
+                  the bothersome signing up process where you have to "verify who you are" by revealing information
+                  about yourself, agree to some drakonian "privacy policy" etc.
+                  all you need to do is to invent and memorize a long password :).<br>
+                  This way, althogh we may not know <em>who</em> you are (i.e. there's no "account verification"),
+                  at least we can assume you're <em>probably</em> the same person we've chatted with before (i.e. you have "accountability").</p>
+                  <p>Depending on the case, you may or may not wish to tell us more about yourself (and we may
+                  or may not choose to believe what you say ;p ).
+                  In some situations, you may even decide to meet us face to face so that you can "verify your account"
+                  via the most popular and least documented protocol of all times &mdash; a physical handshake :).</p>
+                </dd>
+                <dt>What if I forget the pad-id?</dt>
+                <dd>
+                  <p>Not much.
+                     You'll simply be considered a "new person" (and we won't have reason to believe you're "the same person").</p>
+                </dd>
+                <dt>What kind of pad-id should I choose?</dt>
+                <dd>
+                  <p>The system checks that it's:</p>
+                  <ul>
+                    <li>At least {{idminchars}} characters long.</li>
+                    <li>Only contains letters, numbers, "-", and "_" (e.g. <code>I-have-a-fAt-d0g-w1thout-a-nos3</code>).</li>
+                 </ul>
+                 <p>It should also:</p>
+                 <ul>
+                    <li>Not be something that can be found on the net (e.g. no song lyrics, and <em>certainly</em> not <code>I-have-a-fAt-d0g-w1thout-a-nos3</code> ;) ).</li>
+                    <li>Be easy [for you] to remember, yet hard [for anyone else] to guess
+                        (e.g. a variation on the punch-line of a joke your granny used to tell in a foreign language).</li>
+                  </ul>
+                </dd>
+                <a class="btn btn-info" href="#form-top"><i class="icon-arrow-up icon-white"></i>Back</a>
+              </dl>
+            </div>
           </div>
         </div>
       </div>
