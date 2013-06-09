@@ -30,8 +30,8 @@ SKIN_FOLDER='skins/default'
 
 # Messages
 MSG_TMP_SUBJECT = "Chat request" # In the future, perhaps random mnemonics? Whadever
-MSG_SHORT_PAD_ID = "Chat-id should be at least {0} characters long.".format(PAD_ID_MINCHARS)
-MSG_BAD_SLUG = 'Chat-id should only contain letters, digits, "-", and "_".'
+MSG_SHORT_PAD_ID = "Pad-id should be at least {0} characters long.".format(PAD_ID_MINCHARS)
+MSG_BAD_SLUG = 'Pad-id should only contain letters, digits, "-", and "_".'
 MSG_PAD_ID_MISMATCH = "You should enter the same chat-id in both fields."
 MSG_CAPTCHA_FAILED="You've failed the captcha test. Convince me again that you're not a robot."
 MSG_SUCCESS_TITLE="Chat request sent"
