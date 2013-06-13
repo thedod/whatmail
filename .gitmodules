@@ -4,3 +4,6 @@
 [submodule "py-mustache"]
 	path = py-mustache
 	url = https://github.com/defunkt/pystache.git
+[submodule "WinoCaptcha"]
+	path = WinoCaptcha
+	url = https://github.com/thedod/WinoCaptcha.git
