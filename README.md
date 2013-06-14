@@ -77,6 +77,7 @@ Thanks to the authors of all the stuff glued here together:
   * [gnupg](http://www.gnupg.org/), [gpgme](http://www.gnupg.org/related_software/gpgme/)
     and [pygpgme](http://pypi.python.org/pypi/pygpgme/)
   * [mustache](http://mustache.github.com/) and [pystache](https://github.com/defunkt/pystache)
+  * [WinoCaptcha](https://github.com/yerich/WinoCaptcha/)
   * [recaptcha](http://pypi.python.org/pypi/recaptcha-client/)
   * [mysender](https://github.com/denever/mysender/)
 
