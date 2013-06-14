@@ -31,7 +31,6 @@ SKIN_FOLDER='skins/default'
 
 # Messages
 MSG_EMPTY_FROM="Empty name/email. I need to know how to get back to you."
-MSG_EMPTY_SUBJECT="Empty subject line. Tell me what it's about."
 MSG_CAPTCHA_FAILED="You've failed the captcha test. Convince me again that you're not a robot."
 MSG_CAPTCHA_TRY_AGAIN="Try to get it right this time :)"
 MSG_SUCCESS_TITLE="Mesage sent"
@@ -39,7 +38,6 @@ MSG_FAIL_TITLE="Mesage sending failed"
 
 ## ובעברית...
 #MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
-#MSG_EMPTY_SUBJECT="שורת נושא ריקה"
 #MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
 #MSG_CAPTCHA_TRY_AGAIN="עכשיו ברצינות ;)"
 #MSG_SUCCESS_TITLE="ההודעה נשלחה"

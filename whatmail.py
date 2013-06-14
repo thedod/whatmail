@@ -25,7 +25,6 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
         'author':author,
         'iptext':ip and ('IP number: %s, ' % ip) or '',
         'gmtime':asctime(gmtime()),
-        'subject':subject,
         'message':message,
     }).encode('utf-8')
     if GPG_ENABLED:
@@ -79,7 +78,6 @@ def webit():
             'title':PAGE_TITLE,
             'subtitle':is_encrypted and SECURE_PAGE_SUBTITLE or PAGE_SUBTITLE,
             'author':'',
-            'subject':'',
             'message':'',
             'captchahtml':captcha_html(),
             'is_encrypted': is_encrypted,
@@ -89,9 +87,6 @@ def webit():
         author=form.getvalue('author','').strip()
         if not author:
             errors.append(MSG_EMPTY_FROM)
-        subject=form.getvalue('subject','').strip()
-        if not subject:
-            errors.append(MSG_EMPTY_SUBJECT)
         captcha_error=None
         if USE_WINOCAPTCHA:
             from WinoCaptcha import winolib
@@ -116,15 +111,19 @@ def webit():
                 'title':PAGE_TITLE,
                 'errorhtml':errorhtml,
                 'author':author,
-                'subject':subject,
                 'message':form.getvalue('message',''),
                 'captchahtml':captcha_html(error_text=captcha_error),
                 'is_encrypted': GPG_ENABLED,
             }).encode('utf-8')
         else:
             try:
+                try: # create subject lines one can distinguish between ;)
+                    from WinoCaptcha import winolib
+                    subject = winolib.get_question()['question'].split('.',1)[0]
+                except:
+                    subject = 'Form submission'
                 sendit(author=form.getvalue('author'), ip=os.environ['REMOTE_ADDR'],
-                    subject=form.getvalue('subject'), message=form.getvalue('message','(empty message)'))
+                    subject=subject, message=form.getvalue('message','(empty message)'))
                 print stache.render(stache.load_template('success'),{
                     'skin':SKIN_FOLDER,
                     'title':MSG_SUCCESS_TITLE,
