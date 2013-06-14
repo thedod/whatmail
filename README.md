@@ -1,9 +1,8 @@
 ### The TipWire branch ([see demo](https://swatwt.com/tipwire/))
 
-While Whatmail is a general-purpose contact for script (and gpgme encryption only comes as an option),
+While Whatmail is a general-purpose contact form script (and gpgme encryption only comes as an option),
 TipWire is a special-purpose form intended for communication between a `source` (a casual user) and a `desk`
-(a person or a team with enough skills to read gpg mail, and enough resources to run this form
-(and an [Etherpad-Lite server](http://etherpad.org)) behind SSL.
+(a person or a team with enough skills to read gpg mail, and enough resources to run a server behind SSL).
 
 The [wiki page](https://github.com/thedod/whatmail/wiki/tipwire) is where I [try to] describe the system.
 This is also where I document relevant [feedback](https://github.com/thedod/whatmail/wiki/tipwire#criticism-so-far)
