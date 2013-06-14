@@ -15,6 +15,10 @@ SUBJECT_PREFIX='[TipWire] ' # subject line prefix. good for mail filters
 PAD_ID_PREFIX='https://piratenpad.de/p'
 PAD_ID_MINCHARS=32
 
+### Use winograd text captcha
+# set to false if you want no captcha (or recaptcha)
+USE_WINOCAPTCHA=True
+
 ### You get these two at https://www.google.com/recaptcha/admin
 # RECAPTCHA_PUBLIC_KEY='****************'
 # RECAPTCHA_PRIVATE_KEY='***************'
@@ -34,16 +38,17 @@ MSG_SHORT_PAD_ID = "Pad-id should be at least {0} characters long.".format(PAD_I
 MSG_BAD_SLUG = 'Pad-id should only contain letters, digits, "-", and "_".'
 MSG_PAD_ID_MISMATCH = "You should enter the same pad-id in both fields."
 MSG_CAPTCHA_FAILED="You've failed the captcha test. Convince me again that you're not a robot."
+MSG_CAPTCHA_TRY_AGAIN="Try to get it right this time :)"
 MSG_SUCCESS_TITLE="Chat request sent"
 MSG_FAIL_TITLE="Mesage sending failed"
 
 ## ובעברית...
-#!!!!! Not TipWire-ready yet
-# MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
-# MSG_EMPTY_SUBJECT="שורת נושא ריקה"
-# MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
-# MSG_SUCCESS_TITLE="ההודעה נשלחה"
-# MSG_FAIL_TITLE="תקלה בשליחת ההודעה"
+#MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
+#MSG_EMPTY_SUBJECT="שורת נושא ריקה"
+#MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
+#MSG_CAPTCHA_TRY_AGAIN="עכשיו ברצינות ;)"
+#MSG_SUCCESS_TITLE="ההודעה נשלחה"
+#MSG_FAIL_TITLE="תקלה בשליחת ההודעה"
 
 ### gnupg (see README for details)
 GPG_ENABLED=False # Enable if you have gpgme and know how to conf this
