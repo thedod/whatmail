@@ -119,6 +119,7 @@ def webit():
                 'title':PAGE_TITLE,
                 'errorhtml':errorhtml,
                 'idprefix':PAD_ID_PREFIX,
+                'padid':pad_id,
                 'message':form.getvalue('message',''),
                 'captchahtml':captcha_html(error_text=captcha_error),
                 'is_encrypted': GPG_ENABLED,
