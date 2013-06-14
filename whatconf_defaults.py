@@ -33,7 +33,6 @@ SKIN_FOLDER='skins/default'
 #SKIN_FOLDER='skins/hebrew'
 
 # Messages
-MSG_TMP_SUBJECT = "Chat request" # In the future, perhaps random mnemonics? Whadever
 MSG_SHORT_PAD_ID = "Pad-id should be at least {0} characters long.".format(PAD_ID_MINCHARS)
 MSG_BAD_SLUG = 'Pad-id should only contain letters, digits, "-", and "_".'
 MSG_PAD_ID_MISMATCH = "You should enter the same pad-id in both fields."
@@ -44,7 +43,6 @@ MSG_FAIL_TITLE="Mesage sending failed"
 
 ## ובעברית...
 #MSG_EMPTY_FROM="לא הכנסת פרטי יצירת קשר"
-#MSG_EMPTY_SUBJECT="שורת נושא ריקה"
 #MSG_CAPTCHA_FAILED="לא הצלחת להוכיח שאת/ה לא רובוט :)"
 #MSG_CAPTCHA_TRY_AGAIN="עכשיו ברצינות ;)"
 #MSG_SUCCESS_TITLE="ההודעה נשלחה"
