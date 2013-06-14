@@ -48,8 +48,15 @@ def sendit(host = SMTP_HOST, port=SMTP_PORT,
 def webit():
     import os,cgi
     from exceptions import Exception
-    if RECAPTCHA_PUBLIC_KEY:
-        from recaptcha.client import captcha
+    def captcha_html(error_text=None):
+        if USE_WINOCAPTCHA:
+            from WinoCaptcha import winolib
+            return stache.render(stache.load_template('winocaptcha'),winolib.get_question(),error_text=error_text)
+        elif RECAPTCHA_PUBLIC_KEY:
+            from recaptcha.client import captcha
+            return captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=error_text)
+        else:
+            return None
     try:
         scriptname=os.environ['SCRIPT_NAME']
     except: 
@@ -74,7 +81,7 @@ def webit():
             'author':'',
             'subject':'',
             'message':'',
-            'captchahtml':RECAPTCHA_PUBLIC_KEY and captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True) or None,
+            'captchahtml':captcha_html(),
             'is_encrypted': is_encrypted,
         }).encode('utf-8')
     else: # POST
@@ -85,7 +92,13 @@ def webit():
         subject=form.getvalue('subject','').strip()
         if not subject:
             errors.append(MSG_EMPTY_SUBJECT)
-        if RECAPTCHA_PUBLIC_KEY:
+        captcha_error=None
+        if USE_WINOCAPTCHA:
+            from WinoCaptcha import winolib
+            if not winolib.check_answer(form.getvalue('wino_token','').strip(),form.getvalue('wino_answer','').strip()):
+                errors.append(MSG_CAPTCHA_FAILED)
+                captcha_error=MSG_CAPTCHA_TRY_AGAIN
+        elif RECAPTCHA_PUBLIC_KEY:
             captcha_error=''
             captcha_response = captcha.submit(
                 form.getvalue('recaptcha_challenge_field'),
@@ -105,8 +118,7 @@ def webit():
                 'author':author,
                 'subject':subject,
                 'message':form.getvalue('message',''),
-                'captchahtml':
-                    RECAPTCHA_PUBLIC_KEY and captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=captcha_error) or None,
+                'captchahtml':captcha_html(error_text=captcha_error),
                 'is_encrypted': GPG_ENABLED,
             }).encode('utf-8')
         else:
