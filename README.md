@@ -9,17 +9,6 @@ The [wiki page](https://github.com/thedod/whatmail/wiki/tipwire) is where I [try
 This is also where I document relevant [feedback](https://github.com/thedod/whatmail/wiki/tipwire#criticism-so-far)
 I get via the [demo form](https://swatwt.com/tipwire/) or otherwise.
 
-#### To do
-
-* Implement captcha (although whatmail supports google's recaptcha, it is conter-productive for such delicate uses to inform
-  google which `source` was using what `desk`.
-* Only allow API creation of pads (at the moment, users can create arbitrary pads and DoS the Etherpad).
-  This would require creation of pads via API as a side effect of a successful form post
-  (and if this comes with a captcha - we'll hopefully be protected from DoS).
-* Better user-experience for `source`s (GUI, help text, documentation, etc.)
-* Easier deployment (make it easier to open a new `desk`)
-* Switch from cgi to something more modern (pybottle?)
-
 ----------------------------
 
 Below you'll find the original README from the master branch of the WhatMail contact form script
