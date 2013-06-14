@@ -3,8 +3,9 @@
 This is a simple cgi contact form that 
 and can handle utf-8, which is a crucial feature for me since not all my friends write to me in English :)
 
-Optionally, you can configure whatmail to use Google's [recaptcha](http://pypi.python.org/pypi/recaptcha-client/),
-but note that this would enable Google to track people who use your form, so I suggest you only use it if your form is under attack (better yet: fork this, add [PyCAPTCHA](https://github.com/lerouxb/PyCAPTCHA) support, and send me a pull-request ;) ).
+It also has a [text captcha](https://github.com/thedod/WinoCaptcha). It's enabled by default but you can 
+configure whatmail to either disable it or use Google's [recaptcha](http://pypi.python.org/pypi/recaptcha-client/) instead.
+Note that using recaptcha would enable Google to track people who use your form, so this option is mainly here for legacy reasons.
 
 The GUI (big word for a form and a thankyou page) can be skinned with [mustache](http://mustache.github.com/mustache.5.html) templates. The default skin is [twitter bootstrap](http://twitter.github.com/bootstrap/) based, but anything goes, and skin pull-requests are welcome.
 
