@@ -87,12 +87,15 @@ def webit():
         }).encode('utf-8')
     else: # POST
         errors=[]
-        pad_id=form.getvalue('pad-id','').strip()
+        pad_id = form.getvalue('pad-id','').strip()
+        pad_id2 = form.getvalue('pad-id2','').strip()
+        if not (pad_id or pad_id2): # user wants a random pad-id
+            import random,re
+            pad_id = pad_id2 = re.sub('[^a-zA-Z0-9]+','',random._urandom(32).encode('base64'))
         if len(pad_id)<PAD_ID_MINCHARS:
             errors.append(MSG_SHORT_PAD_ID)
         if not RE_SLUG.match(pad_id):
             errors.append(MSG_BAD_SLUG)
-        pad_id2=form.getvalue('pad-id2','').strip()
         if pad_id2!=pad_id:
             errors.append(MSG_PAD_ID_MISMATCH)
         captcha_error=None
@@ -120,14 +123,20 @@ def webit():
                 'errorhtml':errorhtml,
                 'idprefix':PAD_ID_PREFIX,
                 'padid':pad_id,
+                'padid2':pad_id2,
                 'message':form.getvalue('message',''),
                 'captchahtml':captcha_html(error_text=captcha_error),
                 'is_encrypted': GPG_ENABLED,
             }).encode('utf-8')
         else:
             try:
+                try: # create subject lines one can distinguish between ;)
+                    from WinoCaptcha import winolib
+                    subject = winolib.get_question()['question'].split('.',1)[0]
+                except:
+                    subject = 'Chat request'
                 sendit(ip='', # we want this to be anonymous, not ip=os.environ['REMOTE_ADDR'],
-                    subject=MSG_TMP_SUBJECT,
+                    subject=subject,
                     message='Pad id: {0}/{1}\n{2}'.format(
                         PAD_ID_PREFIX, pad_id, form.getvalue('message','(empty message)')))
                 print stache.render(stache.load_template('success'),{

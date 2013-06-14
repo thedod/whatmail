@@ -40,6 +40,7 @@
             <div class="well" id="form-top">
               <strong>Warning! <a target="_blank" href="https://github.com/thedod/whatmail/wiki/tipwire">Experimental!</a></strong><br>
               This form offers a way to securely send us a message and/or initiate a secure chat with us.<br>
+              <strong>Note:</strong> the only mandatory field is the captcha test :)<br>
               Recommended precautions:
               <ul>
                 <li>Use a browser that doesn't save history (e.g. a
@@ -56,7 +57,7 @@
         </div>
         <div class="row">
           <div class="span2">
-            <strong>Pad-id</strong>:
+            Pad-id:
             <a class="btn btn-info" href="#pad-id-help">What's this? <i class="icon-hand-right icon-white"></i></a>.
           </div>
           <div class="span5">
@@ -65,16 +66,16 @@
         </div>
         <div class="row">
           <div class="span2">
-            <strong>Pad-id</strong> (again):
+            Pad-id (again):
           </div>
           <div class="span5">
-            <input class="span5" name="pad-id2" id="pad-id2">
+            <input class="span5" name="pad-id2" id="pad-id2" value="{{padid2}}">
           </div>
         </div>
         <div class="row">
           <div class="span7">
             <br> <!-- ug-lee -->
-	    <p>[Optional] encrypted message:
+	    <p>Encrypted message:
             <a class="btn btn-info" href="#encrypted-help">Isn't it <em>all</em> encrypted? <i class="icon-hand-right icon-white"></i></a></p>
           </div>
         </div>
@@ -108,14 +109,17 @@
                 <dd>
                   <p>The chat will be conducted via an <a target="_blank" href="http://ethepad.org">etherpad</a> at
                   <strong>{{idprefix}}/<code>pad-id</code></strong><br>
-                  where <code>pad-id</code> is a <strong>secret</strong>
-                  you should choose and [hopefully] memorize (you shouldn't write it down anywhere).</p>
-                  <p>It's a bit like registering an account in social networks or other services, only instead of
-                  the bothersome signing up process where you have to "verify who you are" by revealing information
-                  about yourself, agree to some drakonian "privacy policy" etc.
-                  all you need to do is to invent and memorize a long password :).<br>
+                  where <code>pad-id</code> is a <strong>secret</strong>.<br>
+                  <em>You don't need to enter a pad-id into the form</em>. If you leave it blank,
+                  the system will choose an ugly random <code>pad-id</code> for you :).</p>
+                  <p>In some cases it can be handy for you to choose something you can [hopefully] memorize
+                  (you shouldn't save it as a bookmark or write it down anywhere).
                   This way, althogh we may not know <em>who</em> you are (i.e. there's no "account verification"),
                   at least we can assume you're <em>probably</em> the same person we've chatted with before (i.e. you have "accountability").</p>
+                  <p>It's a bit like registering an account in social networks or other services, only instead of
+                  the bothersome signing up process where you have to "verify who you are" by revealing information
+                  about yourself, agree to some draconian "privacy policy" etc.
+                  all you need to do is to invent and memorize a long password :).</p>
                   <p>Depending on the case, you may or may not wish to tell us more about yourself (and we may
                   or may not choose to believe what you say ;p ).
                   In some situations, you may even decide to meet us face to face so that you can "verify your account"
