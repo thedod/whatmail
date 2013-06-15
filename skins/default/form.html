@@ -54,10 +54,24 @@
             </div>
           </div>
         </div>
-        <div class="row well">
-          <div class="span6">
+        <div class="row">
+          <div class="span6"><p><a class="btn" href="#captcha"><i class="icon-hand-down"></i> Skip to the chat request</a></p></div>
+        </div>
+        <div class="row">
+          <div class="span5 well">
             <div class="row">
-              <div class="span6"><p><strong>Optional:</strong> (<a href="#captcha">skip</a>)</p></div>
+              <div class="span5"><h3>Optional:</h3></div>
+            </div>
+            <div class="row">
+              <div class="span5">
+    	    <p>Encrypted message:
+                <a class="btn btn-info" href="#encrypted-help">Isn't it <em>all</em> encrypted? <i class="icon-hand-right icon-white"></i></a></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="span5">
+                <textarea class="span5" rows="12" name="message" id="message">{{message}}</textarea>
+              </div>
             </div>
             <div class="row">
               <div class="span2">
@@ -76,25 +90,13 @@
                 <input class="span3" name="pad-id2" id="pad-id2" value="{{padid2}}">
               </div>
             </div>
-            <div class="row">
-              <div class="span6">
-                <br> <!-- ug-lee -->
-    	    <p>Encrypted message:
-                <a class="btn btn-info" href="#encrypted-help">Isn't it <em>all</em> encrypted? <i class="icon-hand-right icon-white"></i></a></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="span6">
-                <textarea class="span5" rows="12" name="message" id="message">{{message}}</textarea>
-              </div>
-            </div>
           </div>
         </div>
         {{#captchahtml}}
           <div class="row" id="captcha">
             <div class="span6">
-              <p><strong>To prove you're human,
-              you need to pass the <a target="_blank" href="https://en.wikipedia.org/wiki/CAPTCHA">captcha</a> test:</strong></p>
+              <p><strong>To request a chat, you need to prove you're human by passing the
+                         <a target="_blank" href="https://en.wikipedia.org/wiki/CAPTCHA">captcha</a> test:</strong></p>
               {{{captchahtml}}}
             </div>
           </div>
@@ -109,7 +111,33 @@
         <div class="row">
           <div class="span6">
             <div class="well">
+              <h3>In case you were wondering:</h3>
               <dl>
+                <dt id="encrypted-help"><i class="icon-hand-right"></i> What's "encrypted message"? Isn't the chat encrypted as well?</dt>
+                <dd>
+                  <p>Although <em>communication</em> between you and the etherpad chat server is encrypted,
+                     the pads (containing conversation history) are stored on the server's disk unencrypted, and that information might be compromised in
+                     some scenarios (the pad-id leaks, someone gains control over the server or the client, etc.).<br>
+                     It's true that <em>you can always delete the entire pad you're in</em>, but
+                     how would that work in practice?
+                     Suppose you want to say something sensitive, and delete the pad
+                     as soon as your peer confirms
+                     reading the information
+                     (at the price of losing the pad's content and history).
+                     What do you do if there's no one on the other side? Wait until someone is online?
+                     What should your peer do with the message you're about to delete?
+                     Copy/paste the information? Where?
+                  </p>
+                  <p>The <em>encrypted message</em> field lets you send your message as a
+                     <a target="_blank" href="http://gnupg.org/">GnuPG</a> encrypted email. It is kept encrypted
+                     on the personal inbox[es] of team member[s] and only gets decrypted temporarily "on a need to know basis"
+                     by people who are [hopefully] security-minded, and [even more hopefully] would try their best
+                     to refuse decrypting these messages if coerced to do so (disclaimer: this sentence isn't
+                     legally binding. My client wasn't thinking :) ).
+                  </p>
+                  <p>Bottom line: if it's <em>really</em> sensitive, don't mention it at the pad. Send an encrypted message instead.
+                  <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
+                </dd>
                 <dt id="pad-id-help"><i class="icon-hand-right"></i> What is a pad-id?</dt>
                 <dd>
                   <p>The chat will be conducted via an <a target="_blank" href="http://ethepad.org">etherpad</a> at
@@ -152,31 +180,6 @@
                   </ul>
                   <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
                 </dd>
-                <dt id="encrypted-help"><i class="icon-hand-right"></i> What's "encrypted message"? Isn't the chat encrypted as well?</dt>
-                <dd>
-                  <p>Although <em>communication</em> between you and the etherpad chat server is encrypted,
-                     the pads (containing conversation history) are stored on the server's disk unencrypted, and that information might be compromised in
-                     some scenarios (the pad-id leaks, someone gains control over the server or the client, etc.).<br>
-                     It's true that <em>you can always delete the entire pad you're in</em>, but
-                     how would that work in practice?
-                     Suppose you want to say something sensitive, and delete the pad
-                     as soon as your peer confirms
-                     reading the information
-                     (at the price of losing the pad's content and history).
-                     What do you do if there's no one on the other side? Wait until someone is online?
-                     What should your peer do with the message you're about to delete?
-                     Copy/paste the information? Where?
-                  </p>
-                  <p>The <em>encrypted message</em> field lets you send your message as a
-                     <a target="_blank" href="http://gnupg.org/">GnuPG</a> encrypted email. It is kept encrypted
-                     on the personal inbox[es] of team member[s] and only gets decrypted temporarily "on a need to know basis"
-                     by people who are [hopefully] security-minded, and [even more hopefully] would try their best
-                     to refuse decrypting these messages if coerced to do so (disclaimer: this sentence isn't
-                     legally binding. My client wasn't thinking).
-                  </p>
-                  <p>Bottom line: if it's <em>really</em> sensitive, don't mention it at the pad. Send an encrypted message instead.
-                  <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
-                </dd>
               </dl>
             </div>
           </div>
@@ -185,6 +188,6 @@
     </div>
   </form>
  </div>
- <a class="btn" href="https://github.com/thedod/whatmail/tree/tipwire#readme" style="position: fixed; bottom: 4px; right: 4px">Fork this branch on github</a>
+ <a class="btn" href="https://github.com/thedod/whatmail/tree/tipwire#readme" style="position: fixed; bottom: 4px; right: 4px"><i class="icon-wrench"></i> Fork this branch on github</a>
 </body>
 </html>

@@ -120,6 +120,7 @@ def webit():
                 'skin':SKIN_FOLDER,
                 'scriptname':scriptname,
                 'title':PAGE_TITLE,
+                'subtitle':is_encrypted and SECURE_PAGE_SUBTITLE or PAGE_SUBTITLE,
                 'errorhtml':errorhtml,
                 'idprefix':PAD_ID_PREFIX,
                 'padid':pad_id,
