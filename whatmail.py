@@ -123,6 +123,7 @@ def webit():
                 'subtitle':is_encrypted and SECURE_PAGE_SUBTITLE or PAGE_SUBTITLE,
                 'errorhtml':errorhtml,
                 'idprefix':PAD_ID_PREFIX,
+                'idminchars':PAD_ID_MINCHARS,
                 'padid':pad_id,
                 'padid2':pad_id2,
                 'message':form.getvalue('message',''),

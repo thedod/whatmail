@@ -38,29 +38,36 @@
               </div>
             {{/errorhtml}}
             <div>
-              <h4>Warning! <a target="_blank" href="https://github.com/thedod/whatmail/wiki/tipwire">Experimental!</a></h4>
+              <h4>Warning! <a target="_blank" href="https://github.com/thedod/whatmail/wiki/tipwire">Experimental</a>!</h4>
               This form offers a way to securely send us a message and/or initiate a secure chat with us.</p>
               <h4>Recommended precautions:</h4>
-              <ul>
-                <li>Use a browser that doesn't save history (e.g. a
-                    <a target="_blank" href="https://support.mozilla.org/en-US/kb/private-browsing-browse-web-without-saving-info">Firefox private window</a>
-                    or a
-                    <a target="_blank" href="https://support.google.com/chrome/answer/95464">Chrome incognito window</a>).</li>
-                 <li>Although we don't log your IP number (neither here, nor at the <a target="_blank" href="http://etherpad.org">etherpad</a> chat server),
-                     if anonymity is a concern for you, you should use <a target="_blank" href="https://www.torproject.org">tor</a>
-                     (<a target="_blank" href="https://www.torproject.org/download/download-easy.html.en#warning">wisely</a>)
-                     to avoid <a target="_blank" href="https://en.wikipedia.org/wiki/Traffic_analysis">traffic analysis</a> by others.</li>
-              </ul>
+              <ol>
+                <li>Make sure your browser doesn't save history:
+                  <ul>
+                    <li>If you use <em>Firefox</em>, hit <code>Ctrl-Shift-P</code> to open a 
+                        <a target="_blank" href="https://support.mozilla.org/en-US/kb/private-browsing-browse-web-without-saving-info">private window</a>.</li>
+                    <li>If you use <em>Chrome</em>, hit <code>Ctrl-Shift-N</code> to open an
+                        <a target="_blank" href="https://support.google.com/chrome/answer/95464">incognito window</a>.</li>
+                    <li>If you use <em>Tor browser</em> (see below), you're fine :)
+                    <li>Even if you normally use some <em>other</em> browser, for the chat &mdash; use one of the browsers mentioned above.</li>
+                  </ul>
+                </li>
+                <li>[Advanced] if anonymity is a concern for you, you should use <a target="_blank" href="https://www.torproject.org">Tor browser</a>
+                (<a target="_blank" href="https://www.torproject.org/download/download-easy.html.en#warning">wisely</a>)
+                to avoid <a target="_blank" href="https://en.wikipedia.org/wiki/Traffic_analysis">traffic analysis</a>
+                (although your IP number isn't logged here or at the chat server,
+                there's still <em>the rest of the world</em> to worry about :) ).</li>
+              </ol>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="span6"><p><a class="btn" href="#captcha"><i class="icon-hand-down"></i> Skip to the chat request</a></p></div>
+          <div class="span6"><p><a class="btn" href="#captcha"><i class="icon-hand-down"></i> Skip advanced options</a></p></div>
         </div>
         <div class="row">
           <div class="span5 well">
             <div class="row">
-              <div class="span5"><h3>Optional:</h3></div>
+              <div class="span5"><h3>Advanced options:</h3></div>
             </div>
             <div class="row">
               <div class="span5">
@@ -111,7 +118,7 @@
         <div class="row">
           <div class="span6">
             <div class="well">
-              <h3>In case you were wondering:</h3>
+              <h3>Advanced options explained:</h3>
               <dl>
                 <dt id="encrypted-help"><i class="icon-hand-right"></i> What's "encrypted message"? Isn't the chat encrypted as well?</dt>
                 <dd>
@@ -160,11 +167,6 @@
                   In some situations, you may even decide to meet us face to face so that you can "verify your account"
                   via the most popular and least documented protocol of all times &mdash; a physical handshake :).</p>
                 </dd>
-                <dt>What if I forget the pad-id?</dt>
-                <dd>
-                  <p>Not much.
-                     You'll simply be considered a "new person" (and we won't have reason to believe you're "the same person").</p>
-                </dd>
                 <dt>What kind of pad-id should I choose?</dt>
                 <dd>
                   <p>The system checks that it's:</p>
@@ -174,10 +176,15 @@
                  </ul>
                  <p>It should also:</p>
                  <ul>
-                    <li>Not be something that can be found on the net (e.g. no song lyrics, and <em>certainly</em> not <code>I-have-a-fAt-d0g-w1thout-a-nos3</code> ;) ).</li>
+                    <li>Not be something that can be found on the net (e.g. no song lyrics, and <em>certainly</em> not <code>I-have-a-fAt-d0g-w1thout-a-nos3</code>, because it already appears <em>here</em> ;) ).</li>
                     <li>Be easy [for you] to remember, yet hard [for anyone else] to guess
                         (e.g. a variation on the punch-line of a joke your granny used to tell in a foreign language).</li>
                   </ul>
+                </dd>
+                <dt>What if I forget the pad-id?</dt>
+                <dd>
+                  <p>Not much.
+                     You'll simply be considered a "new person" (and we won't have reason to believe you're "the same person").</p>
                   <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
                 </dd>
               </dl>
@@ -188,6 +195,6 @@
     </div>
   </form>
  </div>
- <a class="btn" href="https://github.com/thedod/whatmail/tree/tipwire#readme" style="position: fixed; bottom: 4px; right: 4px"><i class="icon-wrench"></i> Fork this branch on github</a>
+ <a target="_blank" class="btn" href="https://github.com/thedod/whatmail/tree/tipwire#readme" style="position: fixed; bottom: 4px; right: 4px"><i class="icon-wrench"></i> Fork this branch on github</a>
 </body>
 </html>
