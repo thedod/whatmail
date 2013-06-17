@@ -90,7 +90,10 @@ def webit():
         captcha_error=None
         if USE_WINOCAPTCHA:
             from WinoCaptcha import winolib
-            if not winolib.check_answer(form.getvalue('wino_token','').strip(),form.getvalue('wino_answer','').strip()):
+            captcha_result = winolib.check_answer(form.getvalue('wino_token','').strip(),form.getvalue('wino_answer','').strip())
+            if captcha_result is None: # Either attack or honest mistake (reload, back button)
+                errors.append(None) # Fail, but don't show error message
+            elif not captcha_result: # Good question, wrong answer :)
                 errors.append(MSG_CAPTCHA_FAILED)
                 captcha_error=MSG_CAPTCHA_TRY_AGAIN
         elif RECAPTCHA_PUBLIC_KEY:
@@ -104,7 +107,8 @@ def webit():
                 errors.append(MSG_CAPTCHA_FAILED)
                 captcha_error=captcha_response.error_code
         if errors:
-            errorhtml='<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors]))
+            errors = filter(None,errors) # skip empty messages (see winolb.check_answer above)
+            errorhtml = errors and '<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors])) or ''
             print stache.render(stache.load_template('form'),{
                 'skin':SKIN_FOLDER,
                 'scriptname':scriptname,
