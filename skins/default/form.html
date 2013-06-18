@@ -32,11 +32,6 @@
       <div class="span6">
         <div class="row">
           <div class="span6">
-            {{#errorhtml}}
-              <div class="alert alert-error">
-                {{{errorhtml}}}
-              </div>
-            {{/errorhtml}}
             <div>
               <h4>Warning! <a target="_blank" href="https://github.com/thedod/whatmail/wiki/tipwire">Experimental</a>!</h4>
               This form offers a way to securely send us a message and/or initiate a secure chat with us.</p>
@@ -60,10 +55,28 @@
                 maintain a history of the sites you visit.</li>
               </ol>
             </div>
+            {{#errorhtml}}
+              <div class="alert alert-error">
+                <h4>Please correct the following error(s):</h4>
+                {{{errorhtml}}}
+              </div>
+            {{/errorhtml}}
           </div>
         </div>
+        {{#captchahtml}}
+          <div class="row" id="captcha">
+            <div class="span6">
+              <p><strong>The only thing you <em>need</em> to do is prove you're human by passing the
+                         <a target="_blank" href="https://en.wikipedia.org/wiki/CAPTCHA">captcha</a> test:</strong></p>
+              {{{captchahtml}}}
+            </div>
+          </div>
+        {{/captchahtml}}
         <div class="row">
-          <div class="span6"><p><a class="btn" href="#captcha"><i class="icon-hand-down"></i> Skip advanced options</a></p></div>
+          <div class="span6">
+            <p>You can either <input class="btn btn-primary" type="submit" value="request a chat">
+               right away, or provide optional information below.</p>
+          </div>
         </div>
         <div class="row">
           <div class="span5 well">
@@ -100,15 +113,6 @@
             </div>
           </div>
         </div>
-        {{#captchahtml}}
-          <div class="row" id="captcha">
-            <div class="span6">
-              <p><strong>To request a chat, you need to prove you're human by passing the
-                         <a target="_blank" href="https://en.wikipedia.org/wiki/CAPTCHA">captcha</a> test:</strong></p>
-              {{{captchahtml}}}
-            </div>
-          </div>
-        {{/captchahtml}}
         <div class="row">
           <div class="span6">
             <p><input class="btn btn-primary btn-large" type="submit" value="Request chat"></p>

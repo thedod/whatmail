@@ -87,17 +87,6 @@ def webit():
         }).encode('utf-8')
     else: # POST
         errors=[]
-        pad_id = form.getvalue('pad-id','').strip()
-        pad_id2 = form.getvalue('pad-id2','').strip()
-        if not (pad_id or pad_id2): # user wants a random pad-id
-            import random,re
-            pad_id = pad_id2 = re.sub('[^a-zA-Z0-9]+','',random._urandom(32).encode('base64'))
-        if len(pad_id)<PAD_ID_MINCHARS:
-            errors.append(MSG_SHORT_PAD_ID)
-        if not RE_SLUG.match(pad_id):
-            errors.append(MSG_BAD_SLUG)
-        if pad_id2!=pad_id:
-            errors.append(MSG_PAD_ID_MISMATCH)
         captcha_error=None
         if USE_WINOCAPTCHA:
             from WinoCaptcha import winolib
@@ -117,6 +106,17 @@ def webit():
             if not captcha_response.is_valid:
                 errors.append(MSG_CAPTCHA_FAILED)
                 captcha_error=captcha_response.error_code
+        pad_id = form.getvalue('pad-id','').strip()
+        pad_id2 = form.getvalue('pad-id2','').strip()
+        if not (pad_id or pad_id2): # user wants a random pad-id
+            import random,re
+            pad_id = pad_id2 = re.sub('[^a-zA-Z0-9]+','',random._urandom(32).encode('base64'))
+        if len(pad_id)<PAD_ID_MINCHARS:
+            errors.append(MSG_SHORT_PAD_ID)
+        if not RE_SLUG.match(pad_id):
+            errors.append(MSG_BAD_SLUG)
+        if pad_id2!=pad_id:
+            errors.append(MSG_PAD_ID_MISMATCH)
         if errors:
             errors = filter(None,errors) # skip empty messages (see winolb.check_answer above)
             errorhtml = errors and '<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors])) or ''
