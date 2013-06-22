@@ -135,6 +135,7 @@ def webit():
                 'is_encrypted': GPG_ENABLED,
             }).encode('utf-8')
         else:
+
             try:
                 try: # create subject lines one can distinguish between ;)
                     from WinoCaptcha import winolib
@@ -150,6 +151,10 @@ def webit():
                     'title':MSG_SUCCESS_TITLE,
                     'padurl':'/'.join([PAD_ID_PREFIX,pad_id])
                 }).encode('utf-8')
+                if PAD_API_KEY: # Try to create the pad. Mail gets sent even if this fails (e.g. server down). This way, admin will find out ;)
+                    import urllib2
+                    # TODO: More error checking? Now we catch "Connection refused", and ignore "already exists". Any other interesting failure modes?
+                    urllib2.urlopen('{0}/createPad?apikey={1}&padID={2}'.format(PAD_API_PREFIX,PAD_API_KEY,pad_id)) # may raise "Connection refused"
             except Exception,e:
                 print stache.render(stache.load_template('fail'),{
                     'skin':SKIN_FOLDER,

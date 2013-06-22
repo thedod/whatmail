@@ -12,8 +12,15 @@ SMTP_CERTFILE=None # Ditto
 SMTP_USERNAME=SMTP_FROM # for gmail (and usually), SMTP_FROM is what you need
 SMTP_PASSWORD='*******'
 SUBJECT_PREFIX='[TipWire] ' # subject line prefix. good for mail filters
-PAD_ID_PREFIX='https://piratenpad.de/p'
+
+### etherpad-lite related configuration
+PAD_PREFIX='http://localhost:9001' # Change this to the SSL url of your pad, of course
+PAD_ID_PREFIX=PAD_PREFIX+'/p'
 PAD_ID_MINCHARS=32
+# Optional: create the pad via api.
+# You can then define '"editOnly" : true' in pad's settings.json to avoid pad creation DoS.
+PAD_API_PREFIX=PAD_PREFIX+'/api/1' # api version 1.x
+PAD_API_KEY=None # Contents of etherpad's APIKEY.txt (this is a secret, of course). None for no pad creation.
 
 ### Use winograd text captcha
 # set to false if you want no captcha (or recaptcha)
