@@ -2,7 +2,11 @@
 
 While Whatmail is a general-purpose contact form script (and gpgme encryption only comes as an option),
 TipWire is a special-purpose form intended for communication between a `source` (a casual user) and a `desk`
-(a person or a team with enough skills to read gpg mail, and enough resources to run a server behind SSL).
+(a person or a team with enough skills to read gpg mail, and enough resources to run an [etherpad](http://etherpad.org/) server behind SSL).
+
+Note that you should configure the etherpad server in an
+"[unorthodox](https://github.com/thedod/whatmail/blob/tipwire/useful-for-etherpad-settings.txt)"
+manner for privacy and other reasons.
 
 The [wiki page](https://github.com/thedod/whatmail/wiki/tipwire) is where I [try to] describe the system.
 This is also where I document relevant [feedback](https://github.com/thedod/whatmail/wiki/tipwire#criticism-so-far)
@@ -17,7 +21,7 @@ Below you'll find the original README from the master branch of the WhatMail con
 ### WhatMail by [@TheRealDod](http://twitter.com/TheRealDod)
 
 This is a simple cgi contact form that 
-and can handle utf-8, which is a crucial feature for me since not all my friends write to me in English :)
+can handle utf-8, which is a crucial feature for me since not all my friends write to me in English :)
 
 It also has a [text captcha](https://github.com/thedod/WinoCaptcha). It's enabled by default but you can 
 configure whatmail to either disable it or use Google's [recaptcha](http://pypi.python.org/pypi/recaptcha-client/) instead.
