@@ -19,8 +19,6 @@
 </head>
 <body>
  <div class="container">
-  <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
-       action="{{scriptname}}">
     <div class="row" id="top">
       <div class="span12">
         <div class="page-header" style="text-align:center">
@@ -30,11 +28,13 @@
     </div>
     <div class="row">
       <div class="span6">
-        <div class="row">
-          <div class="span6">
-            <div>
+        <form class="feedback-form" name="feedback_form" id="feedback_form" method="post"
+          action="{{scriptname}}">
+          <div class="row">
+            <div class="span6">
               <h4>Warning! <a target="_blank" href="https://github.com/thedod/whatmail/wiki/tipwire">Experimental</a>!</h4>
-              This form offers a way to securely send us a message and/or initiate a secure chat with us.</p>
+              <p>This form offers a way for you to securely send a message and/or chat with
+              <a target="_blank" href="https://dubiousdod.org">The Dod</a>.<br>
               <h4><i class="icon-eye-close"></i> Recommended precautions:</h4>
               <ol>
                 <li>Make sure your browser doesn't save history:
@@ -54,152 +54,148 @@
                 <a target="_blank" href="https://twitter.com/circles_n_boxes/status/344176221954904065/photo/1">do</a>
                 maintain a history of the sites you visit.</li>
               </ol>
+              {{#errorhtml}}
+                <div class="alert alert-error">
+                  <h4>Please correct the following error(s):</h4>
+                  {{{errorhtml}}}
+                </div>
+              {{/errorhtml}}
             </div>
-            {{#errorhtml}}
-              <div class="alert alert-error">
-                <h4>Please correct the following error(s):</h4>
-                {{{errorhtml}}}
-              </div>
-            {{/errorhtml}}
           </div>
-        </div>
-        {{#captchahtml}}
-          <div class="row" id="captcha">
+          {{#captchahtml}}
+            <div class="row" id="captcha">
+              <div class="span6">
+                <p><strong>The only thing you <em>need</em> to do is prove you're human by passing the
+                           <a target="_blank" href="https://en.wikipedia.org/wiki/CAPTCHA">captcha</a> test:</strong></p>
+                {{{captchahtml}}}
+              </div>
+            </div>
+          {{/captchahtml}}
+          <div class="row">
             <div class="span6">
-              <p><strong>The only thing you <em>need</em> to do is prove you're human by passing the
-                         <a target="_blank" href="https://en.wikipedia.org/wiki/CAPTCHA">captcha</a> test:</strong></p>
-              {{{captchahtml}}}
+              <p>You can either <input class="btn btn-primary" type="submit" value="request a chat">
+                 right away, or provide optional information below.</p>
             </div>
           </div>
-        {{/captchahtml}}
-        <div class="row">
-          <div class="span6">
-            <p>You can either <input class="btn btn-primary" type="submit" value="request a chat">
-               right away, or provide optional information below.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span5 well">
-            <div class="row">
-              <div class="span5"><h3>Advanced options:</h3></div>
-            </div>
-            <div class="row">
-              <div class="span5">
-    	    <p>Encrypted message:
-                <a class="btn btn-info" href="#encrypted-help">Isn't it <em>all</em> encrypted? <i class="icon-hand-right icon-white"></i></a></p>
+          <div class="row">
+            <div class="span5 well">
+              <div class="row">
+                <div class="span5"><h3>Advanced options:</h3></div>
               </div>
-            </div>
-            <div class="row">
-              <div class="span5">
-                <textarea class="span5" rows="12" name="message" id="message">{{message}}</textarea>
+              <div class="row">
+                <div class="span5">
+      	    <p>Encrypted message:
+                  <a class="btn btn-info" href="#encrypted-help">Isn't it <em>all</em> encrypted? <i class="icon-hand-right icon-white"></i></a></p>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="span2">
-                Pad-id:
-                <a class="btn btn-info" href="#pad-id-help">What's this? <i class="icon-hand-right icon-white"></i></a>.
+              <div class="row">
+                <div class="span5">
+                  <textarea class="span5" rows="12" name="message" id="message">{{message}}</textarea>
+                </div>
               </div>
-              <div class="span3">
-                <input class="span3" name="pad-id" id="pad-id" value="{{padid}}">
+              <div class="row">
+                <div class="span2">
+                  Pad-id:
+                  <a class="btn btn-info" href="#pad-id-help">What's this? <i class="icon-hand-right icon-white"></i></a>.
+                </div>
+                <div class="span3">
+                  <input class="span3" name="pad-id" id="pad-id" value="{{padid}}">
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="span2">
-                Pad-id (again):
-              </div>
-              <div class="span3">
-                <input class="span3" name="pad-id2" id="pad-id2" value="{{padid2}}">
+              <div class="row">
+                <div class="span2">
+                  Pad-id (again):
+                </div>
+                <div class="span3">
+                  <input class="span3" name="pad-id2" id="pad-id2" value="{{padid2}}">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="span6">
-            <p><input class="btn btn-primary btn-large" type="submit" value="Request chat"></p>
+          <div class="row">
+            <div class="span6">
+              <p><input class="btn btn-primary btn-large" type="submit" value="Request chat"></p>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
-      <div class="span6">
-        <div class="row">
-          <div class="span6">
-            <div class="well">
-              <h3>Advanced options explained:</h3>
-              <dl>
-                <dt id="encrypted-help"><i class="icon-hand-right"></i> What's "encrypted message"? Isn't the chat encrypted as well?</dt>
-                <dd>
-                  <p>Although <em>communication</em> between you and the etherpad chat server is encrypted,
-                     the pads (containing conversation history) are stored on the server's disk unencrypted, and that information might be compromised in
-                     some scenarios (the pad-id leaks, someone gains control over the server or the client, etc.).<br>
-                     It's true that <em>you can always delete the entire pad you're in</em>, but
-                     how would that work in practice?
-                     Suppose you want to say something sensitive, and delete the pad
-                     as soon as your peer confirms
-                     reading the information
-                     (at the price of losing the pad's content and history).
-                     What do you do if there's no one on the other side? Wait until someone is online?
-                     What should your peer do with the message you're about to delete?
-                     Copy/paste the information? Where?
-                  </p>
-                  <p>The <em>encrypted message</em> field lets you send your message as a
-                     <a target="_blank" href="http://gnupg.org/">GnuPG</a> encrypted email. It is kept encrypted
-                     on the personal inbox[es] of team member[s] and only gets decrypted temporarily "on a need to know basis"
-                     by people who are [hopefully] security-minded, and [even more hopefully] would try their best
-                     to refuse decrypting these messages if coerced to do so (disclaimer: this sentence isn't
-                     legally binding. My client wasn't thinking :) ).
-                  </p>
-                  <p>Bottom line: if it's <em>really</em> sensitive, don't mention it at the pad. Send an encrypted message instead.
-                  <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
-                </dd>
-                <dt id="pad-id-help"><i class="icon-hand-right"></i> What is a pad-id?</dt>
-                <dd>
-                  <p>The chat will be conducted via an <a target="_blank" href="http://ethepad.org">etherpad</a> at
-                  <strong>{{idprefix}}/<code>pad-id</code></strong><br>
-                  where <code>pad-id</code> is a <strong>secret</strong>
-                  (you shouldn't write it down anywhere or save the address as a bookmark).</p>
-                  <p><em>You don't need to enter a pad-id into the form</em> (if you leave it blank,
-                  the system will choose an ugly random <code>pad-id</code> for you),
-                  but In some cases it can be handy for you to choose something you can [hopefully] memorize and use more than once,
-                  and maintain a history of your conversation (you can always delete the entire history with a single click,
-                  but you may often find it useful <em>not</em> to do so).</p>
-                  <p>This way, although we may not know <em>who</em> you are (i.e. there's no "account verification"),
-                  at least we can assume you're <em>probably</em> the same person we've chatted with before (i.e. you have "accountability").<br>
-                  It's a bit like signing up to a web service (e.g. a social network), only instead of
-                  the bothersome process of disclosing your email address and other personal information,
-                  agreeing to some draconian "privacy policy", etc.,
-                  all you need is to invent and memorize a long password :).</p>
-                  <p>Depending on the case, you may or may not wish to tell us more about yourself (and we may
-                  or may not choose to believe what you say ;p ).
-                  In some situations, you may even decide to meet us face to face so that you can "verify your account"
-                  via the most popular and least documented protocol of all times &mdash; a physical handshake :).</p>
-                </dd>
-                <dt>What kind of pad-id should I choose?</dt>
-                <dd>
-                  <p>The system checks that it's:</p>
-                  <ul>
-                    <li>At least {{idminchars}} characters long.</li>
-                    <li>Only contains letters, numbers, "-", and "_" (e.g. <code>I-have-a-fAt-d0g-w1thout-a-nos3</code>).</li>
-                 </ul>
-                 <p>It should also:</p>
-                 <ul>
-                    <li>Not be something that can be found on the net (e.g. no song lyrics, and <em>certainly</em> not <code>I-have-a-fAt-d0g-w1thout-a-nos3</code>, because it already appears <em>here</em> ;) ).</li>
-                    <li>Be easy [for you] to remember, yet hard [for anyone else] to guess
-                        (e.g. a variation on the punch-line of a joke your granny used to tell in a foreign language).</li>
-                  </ul>
-                </dd>
-                <dt>What if I forget the pad-id?</dt>
-                <dd>
-                  <p>Not much.
-                     You'll simply be considered a "new person" (and we won't have reason to believe you're "the same person").</p>
-                  <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
-                </dd>
-              </dl>
-            </div>
+    <div class="span6">
+      <div class="row">
+        <div class="span6">
+          <div class="well">
+            <h3>Advanced options explained:</h3>
+            <dl>
+              <dt id="encrypted-help"><i class="icon-hand-right"></i> What's "encrypted message"? Isn't the chat encrypted as well?</dt>
+              <dd>
+                <p>Although <em>communication</em> between you and the etherpad chat server is encrypted,
+                   the pads (containing conversation history) are stored on the server's disk unencrypted, and that information might be compromised in
+                   some scenarios (the pad-id leaks, someone gains control over the server or the client, etc.).<br>
+                   It's true that <em>you can always delete the entire pad you're in</em>, but
+                   how would that work in practice? Suppose you want to say something sensitive, and delete the pad
+                   as soon as I confirm reading the information (at the price of losing the pad's content and history).
+                   What do you do if there's no one on the other side? Wait until I'm online?
+                   What should I do with the message you're about to delete?
+                   Copy/paste the information? Where?
+                </p>
+                <p>The <em>encrypted message</em> field lets you send your message as a
+                   <a target="_blank" href="http://gnupg.org/">GnuPG</a> encrypted email. It is kept encrypted
+                   on my personal inbox and only gets decrypted temporarily "on a need to know basis"
+                   by me &mdash; a [hopefully] security-minded person who would [even more hopefully] try his best
+                   to refuse decrypting these messages if coerced to do so (disclaimer: this sentence isn't
+                   legally binding. My client wasn't thinking ;) ).
+                </p>
+                <p>Bottom line: if it's <em>really</em> sensitive, don't mention it at the chat. Send an encrypted message instead.
+                <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
+              </dd>
+              <dt id="pad-id-help"><i class="icon-hand-right"></i> What is a pad-id?</dt>
+              <dd>
+                <p>The chat will be conducted via an <a target="_blank" href="http://ethepad.org">etherpad</a> at
+                <strong>{{idprefix}}/<code>pad-id</code></strong><br>
+                where <code>pad-id</code> is a <strong>secret</strong>
+                (you shouldn't write it down anywhere or save the address as a bookmark).</p>
+                <p><em>You don't need to enter a pad-id into the form</em> (if you leave it blank,
+                the system will choose an ugly random <code>pad-id</code> for you),
+                but In some cases it can be handy for you to choose something you can [hopefully] memorize and use more than once,
+                and maintain a history of your conversation (you can always delete the entire history with a single click,
+                but you may often find it useful <em>not</em> to do so).</p>
+                <p>This way, although I may not know <em>who</em> you are (i.e. there's no "account verification"),
+                at least I can assume you're <em>probably</em> the same person I've chatted with before (i.e. you have "accountability").<br>
+                It's a bit like signing up to a web service (e.g. a social network), only instead of
+                the bothersome process of disclosing your email address and other personal information,
+                agreeing to some draconian "privacy policy", etc.,
+                all you need is to invent and memorize a long password :).</p>
+                <p>Depending on the case, you may or may not wish to tell me more about yourself (and I may
+                or may not choose to believe what you say ;p ).
+                In some situations, you may even decide to meet me face to face so that you can "verify your account"
+                via the most popular and least documented protocol of all times &mdash; a physical handshake :).</p>
+              </dd>
+              <dt>What kind of pad-id should I choose?</dt>
+              <dd>
+                <p>The system checks that it's:</p>
+                <ul>
+                  <li>At least {{idminchars}} characters long.</li>
+                  <li>Only contains letters, numbers, "-", and "_" (e.g. <code>I-have-a-fAt-d0g-w1thout-a-nos3</code>).</li>
+               </ul>
+               <p>It should also:</p>
+               <ul>
+                  <li>Not be something that can be found on the net (e.g. no song lyrics, and <em>certainly</em> not <code>I-have-a-fAt-d0g-w1thout-a-nos3</code>, because it already appears <em>here</em> ;) ).</li>
+                  <li>Be easy [for you] to remember, yet hard [for anyone else] to guess
+                      (e.g. a variation on the punch-line of a joke your granny used to tell in a foreign language).</li>
+                </ul>
+              </dd>
+              <dt>What if I forget the pad-id?</dt>
+              <dd>
+                <p>Not much.
+                   You'll simply be considered a "new person" (and I won't have reason to believe you're "the same person").</p>
+                <p><a class="btn btn-info" href="#top">Back <i class="icon-hand-up icon-white"></i></a></p>
+              </dd>
+            </dl>
           </div>
         </div>
       </div>
     </div>
-  </form>
- </div>
- <a target="_blank" class="btn" href="https://github.com/thedod/whatmail/tree/tipwire#readme" style="position: fixed; bottom: 4px; right: 4px"><i class="icon-wrench"></i> Fork this branch on github</a>
+  </div>
+</div>
+<a target="_blank" class="btn" href="https://github.com/thedod/whatmail/tree/tipwire#readme" style="position: fixed; bottom: 4px; right: 4px"><i class="icon-wrench"></i> Fork this branch on github</a>
 </body>
 </html>
