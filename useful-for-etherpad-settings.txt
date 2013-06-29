@@ -7,6 +7,10 @@ At the etherpad-lite folder, you need to "npm install" [at least] the following 
 * ep_hide_referrer (hides the pad's url when user follows an external link)
 * ep_remove_embed (If we want the url to stay confidential, an embed button sends a confusing message :) )
 
+Important!!! ep_hide_referrer doesn't hide referrer for links in the chat.
+Until this problem is fixed, you need to manually patch src/static/js/chat.js as explained at
+https://github.com/JohnMcLear/ep_hide_referrer/issues/2
+
 Tip: always show chat (since chat is more suitable for beginners)
 Add chat.stickToScreen(true); To the costumStart function at static/custom/pad.js
 Source: http://mclear.co.uk/2012/01/29/always-show-chat-in-etherpad-lite/
