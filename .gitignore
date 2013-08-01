@@ -1,5 +1,6 @@
 *.pyc
 *~
 *.swp
+*.db
 whatconf.py
 .gnupg
