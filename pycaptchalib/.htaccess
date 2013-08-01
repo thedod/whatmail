@@ -1,0 +1,3 @@
+# Nothing to see here from web, even in cases where it's
+# comfy to put this at a web-accessible location :)
+deny from all

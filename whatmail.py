@@ -51,6 +51,9 @@ def webit():
         if USE_WINOCAPTCHA:
             from WinoCaptcha import winolib
             return stache.render(stache.load_template('winocaptcha'),winolib.get_question(),error_text=error_text)
+        elif USE_PYCAPTCHA:
+            from pycaptchalib import captchalib
+            return stache.render(stache.load_template('pycaptcha'),captchalib.get_question(),error_text=error_text)
         elif RECAPTCHA_PUBLIC_KEY:
             from recaptcha.client import captcha
             return captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=error_text)
@@ -96,9 +99,17 @@ def webit():
             elif not captcha_result: # Good question, wrong answer :)
                 errors.append(MSG_CAPTCHA_FAILED)
                 captcha_error=MSG_CAPTCHA_TRY_AGAIN
+        elif USE_PYCAPTCHA:
+            from pycaptchalib import captchalib
+            captcha_result = captchalib.check_answer(form.getvalue('captcha_token','').strip(),form.getvalue('captcha_answer','').strip())
+            if captcha_result is None: # Either attack or honest mistake (reload, back button)
+                errors.append(None) # Fail, but don't show error message
+            elif not captcha_result: # Good question, wrong answer :)
+                errors.append(MSG_CAPTCHA_FAILED)
+                captcha_error=MSG_CAPTCHA_TRY_AGAIN
         elif RECAPTCHA_PUBLIC_KEY:
             captcha_error=''
-            captcha_response = captcha.submit(
+            captcha_response = cpatchalib.submit(
                 form.getvalue('recaptcha_challenge_field'),
                 form.getvalue('recaptcha_response_field'),
                 RECAPTCHA_PRIVATE_KEY,

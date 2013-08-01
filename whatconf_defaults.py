@@ -13,9 +13,16 @@ SMTP_USERNAME=SMTP_FROM # for gmail (and usually), SMTP_FROM is what you need
 SMTP_PASSWORD='*******'
 SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 
+### Supported captcha libraries ###
+# There are 3 options (in order of priority):
+# 1) Winograd text captcha (the default)
+# 2) PyCaptcha (requires installing PIL or PILLOW)
+# 3) Google recaptcha is here for historical reasons, but Snowden wouldn't advise using it. At least not wittingly :)
+
 ### Use winograd text captcha
 # set to false if you want no captcha (or recaptcha)
 USE_WINOCAPTCHA=True
+USE_PYCAPTCHA=False # Requires PIL or PILLOW
 
 ### You get these two at https://www.google.com/recaptcha/admin
 # RECAPTCHA_PUBLIC_KEY='****************'

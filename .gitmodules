@@ -7,3 +7,6 @@
 [submodule "WinoCaptcha"]
 	path = WinoCaptcha
 	url = https://github.com/thedod/WinoCaptcha.git
+[submodule "PyCAPTCHA"]
+	path = PyCAPTCHA
+	url = https://github.com/thedod/PyCAPTCHA.git
