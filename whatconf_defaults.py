@@ -15,13 +15,13 @@ SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 
 ### Supported captcha libraries ###
 # There are 3 options (in order of priority):
-# 1) Winograd text captcha (the default)
-# 2) PyCaptcha (requires installing PIL or PILLOW)
+# 1) Winograd text captcha (the default bc works without PILLOW, but problematic)
+# 2) PyCaptcha (requires installing PILLOW)
 
 ### Use winograd text captcha
 # set to false if you want no captcha
 USE_WINOCAPTCHA=True
-USE_PYCAPTCHA=False # Requires PIL or PILLOW
+USE_PYCAPTCHA=False # Requires PILLOW
 
 # Folder containing mustache templates
 SKIN_FOLDER='skins/default'
