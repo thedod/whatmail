@@ -54,9 +54,6 @@ def webit():
         elif USE_PYCAPTCHA:
             from pycaptchalib import captchalib
             return stache.render(stache.load_template('pycaptcha'),captchalib.get_question(),error_text=error_text)
-        elif RECAPTCHA_PUBLIC_KEY:
-            from recaptcha.client import captcha
-            return captcha.displayhtml(RECAPTCHA_PUBLIC_KEY,use_ssl=True,error=error_text)
         else:
             return None
     try:
@@ -107,16 +104,6 @@ def webit():
             elif not captcha_result: # Good question, wrong answer :)
                 errors.append(MSG_CAPTCHA_FAILED)
                 captcha_error=MSG_CAPTCHA_TRY_AGAIN
-        elif RECAPTCHA_PUBLIC_KEY:
-            captcha_error=''
-            captcha_response = cpatchalib.submit(
-                form.getvalue('recaptcha_challenge_field'),
-                form.getvalue('recaptcha_response_field'),
-                RECAPTCHA_PRIVATE_KEY,
-                os.environ['REMOTE_ADDR'])
-            if not captcha_response.is_valid:
-                errors.append(MSG_CAPTCHA_FAILED)
-                captcha_error=captcha_response.error_code
         if errors:
             errors = filter(None,errors) # skip empty messages (see winolb.check_answer above)
             errorhtml = errors and '<ul class="error-list">%s</ul>' % ('\n'.join(['<li>%s</li>' % e for e in errors])) or ''

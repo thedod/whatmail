@@ -17,19 +17,11 @@ SUBJECT_PREFIX='[whatmail] ' # subject line prefix. good for mail filters
 # There are 3 options (in order of priority):
 # 1) Winograd text captcha (the default)
 # 2) PyCaptcha (requires installing PIL or PILLOW)
-# 3) Google recaptcha is here for historical reasons, but Snowden wouldn't advise using it. At least not wittingly :)
 
 ### Use winograd text captcha
-# set to false if you want no captcha (or recaptcha)
+# set to false if you want no captcha
 USE_WINOCAPTCHA=True
 USE_PYCAPTCHA=False # Requires PIL or PILLOW
-
-### You get these two at https://www.google.com/recaptcha/admin
-# RECAPTCHA_PUBLIC_KEY='****************'
-# RECAPTCHA_PRIVATE_KEY='***************'
-### But you don't have to use recaptcha
-RECAPTCHA_PUBLIC_KEY=None
-RECAPTCHA_PRIVATE_KEY=None
 
 # Folder containing mustache templates
 SKIN_FOLDER='skins/default'

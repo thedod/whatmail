@@ -4,8 +4,7 @@ This is a simple cgi contact form that
 and can handle utf-8, which is a crucial feature for me since not all my friends write to me in English :)
 
 It also has a [text captcha](https://github.com/thedod/WinoCaptcha). It's enabled by default but you can 
-configure whatmail to either disable it or use Google's [recaptcha](http://pypi.python.org/pypi/recaptcha-client/) instead.
-Note that using recaptcha would enable Google to track people who use your form, so this option is mainly here for legacy reasons.
+configure whatmail to disable it.
 
 The GUI (big word for a form and a thankyou page) can be skinned with [mustache](http://mustache.github.com/mustache.5.html) templates. The default skin is [twitter bootstrap](http://twitter.github.com/bootstrap/) based, but anything goes, and skin pull-requests are welcome.
 
@@ -24,7 +23,6 @@ For what it's worth, the sender's ip number is included in the mail you receive.
   will contain passwords and keys, and you have to make sure it can't be accessible
   from web. If .htaccess doesn't do the trick, show it to your sysadmin and ask to config
   your folder at the apache according to what's written there.
-* Optionally, get [recapcha keys](https://www.google.com/recaptcha/admin) for the form's domain.
 * copy `whatconf_defaults.py` to `whatconf.py` and edit it. See comments inside the file.
 * That's it. You can now access the folder via web (e.g. `/whatmail/`) and get a contact form.
   Send yourself a message to congratulate yourself.
@@ -78,7 +76,6 @@ Thanks to the authors of all the stuff glued here together:
     and [pygpgme](http://pypi.python.org/pypi/pygpgme/)
   * [mustache](http://mustache.github.com/) and [pystache](https://github.com/defunkt/pystache)
   * [WinoCaptcha](https://github.com/yerich/WinoCaptcha/)
-  * [recaptcha](http://pypi.python.org/pypi/recaptcha-client/)
   * [mysender](https://github.com/denever/mysender/)
 
 Special thanks to _Mack_ for peer review.

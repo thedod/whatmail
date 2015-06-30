@@ -1,6 +1,3 @@
-[submodule "recaptcha-client"]
-	path = recaptcha-client
-	url = https://github.com/stefantalpalaru/recaptcha-client.git
 [submodule "py-mustache"]
 	path = py-mustache
 	url = https://github.com/defunkt/pystache.git
